@@ -18,6 +18,7 @@ section {
 
 .project {
   margin-bottom: 80px;
+  text-align: center; /* ✅ 让项目整体居中，包括标题和视频 */
 }
 
 .project img {
@@ -33,19 +34,20 @@ footer {
   color: #666;
 }
 
-/* ✅ 视频容器样式优化，让视频整体居中 */
+/* ✅ 核心修改部分：确保视频容器能居中显示 */
 .video-container {
   position: relative;
-  width: 80%;              /* 视频宽度为页面宽度的80%，可调 */
-  margin: 40px auto;       /* 居中 + 上下留白 */
-  padding-bottom: 45%;     /* 控制视频比例，大约16:9 */
+  display: block;
+  width: 80%;             /* 视频宽度占父元素 80% */
+  max-width: 800px;       /* 最大宽度限制 */
+  margin: 40px auto;      /* ✅ 自动居中 */
+  padding-bottom: 45%;    /* 16:9 比例 */
   height: 0;
   overflow: hidden;
-  border-radius: 10px;     /* 让视频边角更柔和 */
+  border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
-/* ✅ iframe 完整铺满容器 */
 .video-container iframe {
   position: absolute;
   top: 0;
