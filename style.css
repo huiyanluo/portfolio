@@ -18,7 +18,17 @@ section {
 
 .project {
   margin-bottom: 80px;
-  text-align: center; /* ✅ 让项目整体居中，包括标题和视频 */
+  text-align: left; /* ✅ 文字保持左对齐 */
+}
+
+.project h3 {
+  margin-bottom: 15px;
+}
+
+.project p {
+  line-height: 1.7;
+  margin-bottom: 25px;
+  color: #333;
 }
 
 .project img {
@@ -34,14 +44,14 @@ footer {
   color: #666;
 }
 
-/* ✅ 核心修改部分：确保视频容器能居中显示 */
+/* ✅ 视频居中显示 + 美化 */
 .video-container {
   position: relative;
   display: block;
-  width: 80%;             /* 视频宽度占父元素 80% */
-  max-width: 800px;       /* 最大宽度限制 */
-  margin: 40px auto;      /* ✅ 自动居中 */
-  padding-bottom: 45%;    /* 16:9 比例 */
+  width: 80%;              /* 视频宽度占父元素 80% */
+  max-width: 800px;        /* 最大宽度限制 */
+  margin: 40px auto;       /* ✅ 水平居中 */
+  padding-bottom: 45%;     /* 16:9 比例 */
   height: 0;
   overflow: hidden;
   border-radius: 10px;
