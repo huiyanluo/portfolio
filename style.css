@@ -1,8 +1,8 @@
 body {
   font-family: 'Helvetica Neue', sans-serif;
   margin: 0;
-  color: #e0e0e0;           /* 主文字为浅灰 */
-  background: #000;         /* 背景黑色 */
+  color: #e0e0e0;           /* 正文浅灰 */
+  background: #000;         /* 黑底 */
 }
 
 /* ===== 头部 ===== */
@@ -36,7 +36,19 @@ section {
 .project h3 {
   color: #e0e0e0;           /* 浅灰色 */
   margin-bottom: 15px;
-  font-style: italic;
+  font-style: italic;        /* 保持斜体 */
+}
+
+.project h3 strong {
+  font-weight: bold;         /* 作品标题加粗 */
+}
+
+.project h3 .year {
+  font-weight: normal;       /* 年份正常 */
+  font-style: normal;
+  color: #e0e0e0;
+  margin-left: 5px;
+  font-size: 0.9em;
 }
 
 /* 正文文字 */
