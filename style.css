@@ -33,14 +33,19 @@ footer {
   color: #666;
 }
 
+/* ✅ 视频容器样式优化，让视频整体居中 */
 .video-container {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 比例 */
-  padding-top: 25px;
+  width: 80%;              /* 视频宽度为页面宽度的80%，可调 */
+  margin: 40px auto;       /* 居中 + 上下留白 */
+  padding-bottom: 45%;     /* 控制视频比例，大约16:9 */
   height: 0;
-  margin-bottom: 40px;
+  overflow: hidden;
+  border-radius: 10px;     /* 让视频边角更柔和 */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
+/* ✅ iframe 完整铺满容器 */
 .video-container iframe {
   position: absolute;
   top: 0;
