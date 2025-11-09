@@ -1,63 +1,71 @@
 body {
   font-family: 'Helvetica Neue', sans-serif;
   margin: 0;
-  color: #222;
-  background: #fafafa;
+  color: #e0e0e0;           /* 主文字为浅灰 */
+  background: #000;         /* 背景黑色 */
 }
 
+/* ===== 头部 ===== */
 header {
   text-align: center;
   padding: 100px 20px 60px;
 }
 
+header h1,
+header p {
+  color: #00ff99;           /* ✅ 绿色 */
+  font-style: italic;       /* ✅ 斜体 */
+}
+
+/* ===== 区块 ===== */
 section {
   max-width: 900px;
   margin: 0 auto 100px;
   padding: 0 20px;
 }
 
+/* ===== About 与 Projects 标题 ===== */
+section h2 {
+  color: #00ff99;           /* ✅ 绿色 */
+  font-style: italic;       /* ✅ 斜体 */
+  font-weight: normal;
+  margin-bottom: 30px;
+}
+
+/* ===== 项目样式 ===== */
 .project {
   margin-bottom: 80px;
-  text-align: left; /* ✅ 文字保持左对齐 */
+  text-align: left;          /* ✅ 正文左对齐 */
 }
 
+/* 项目标题保持浅灰色 + 斜体 */
 .project h3 {
+  color: #e0e0e0;
   margin-bottom: 15px;
+  font-style: italic;
 }
 
+/* 正文文字 */
 .project p {
   line-height: 1.7;
   margin-bottom: 25px;
-  color: #333;
+  color: #e0e0e0;
 }
 
-.project img {
-  width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
-
-footer {
-  text-align: center;
-  padding: 40px;
-  font-size: 0.9em;
-  color: #666;
-}
-
-/* ✅ 视频居中显示 + 美化 */
+/* ===== 视频容器（强制居中） ===== */
 .video-container {
   position: relative;
-  display: block;
-  width: 80%;              /* 视频宽度占父元素 80% */
-  max-width: 800px;        /* 最大宽度限制 */
-  margin: 40px auto;       /* ✅ 水平居中 */
-  padding-bottom: 45%;     /* 16:9 比例 */
+  width: 80%;
+  max-width: 800px;
   height: 0;
+  padding-bottom: 45%;
+  margin: 40px auto;      /* ✅ 自动居中 */
   overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  border-radius: 0;       /* 去掉圆角 */
+  box-shadow: 0 0 25px rgba(0,255,153,0.2); /* 绿色阴影 */
 }
 
+/* iframe 完整铺满容器 */
 .video-container iframe {
   position: absolute;
   top: 0;
@@ -65,4 +73,22 @@ footer {
   width: 100%;
   height: 100%;
   border: 0;
+  display: block;         /* ✅ 防止 inline 元素导致偏移 */
+}
+
+/* ===== 页脚 ===== */
+footer {
+  text-align: center;
+  padding: 40px;
+  font-size: 0.9em;
+  color: #00ff99;
+}
+
+footer a {
+  color: #00ff99;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
