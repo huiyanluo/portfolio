@@ -1,15 +1,17 @@
+/* ===== 全局样式 ===== */
 body {
   font-family: 'Helvetica Neue', sans-serif;
   margin: 0;
   color: #e0e0e0;
   background: #000;
+  padding-top: 150px; /* 顶部留空间给固定导航栏 */
 }
 
 /* ===== 导航栏 ===== */
 nav {
-  position: fixed;
-  top: 20px;
-  right: 40px;
+  position: fixed;   /* 固定在页面上 */
+  top: 20px;         /* 离顶部 20px */
+  right: 60px;       /* 离右边 60px */
   z-index: 10;
 }
 
@@ -27,7 +29,7 @@ nav a:hover {
 /* ===== 头部 ===== */
 header {
   text-align: center;
-  padding: 100px 20px 60px;
+  padding: 0px 20px 60px;
 }
 
 header h1 {
@@ -88,6 +90,12 @@ section h2 {
 .project {
   text-align: left;
   margin-bottom: 80px;
+  }
+
+.project h2 {
+  color: #00ff99;
+  font-style: italic;
+  margin-bottom: 30px;
 }
 
 .project h3 strong {
@@ -123,6 +131,25 @@ section h2 {
   border: 0;
 }
 
+/* ===== CV 页面 ===== */
+#cv {
+  max-width: 700px;
+  margin: 0 auto 100px;
+  color: #bfbfbf;
+  line-height: 1.8;
+  padding: 0 20px; /* 顶部 padding 由 body 控制 */
+}
+
+#cv h2 {
+  color: #00ff99;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+#cv p {
+  margin-bottom: 20px;
+}
+
 /* ===== 页脚 ===== */
 footer {
   text-align: center;
@@ -139,21 +166,3 @@ footer a {
 footer a:hover {
   text-decoration: none;
 }
-
-nav {
-  position: absolute;   /* 绝对定位相对 body */
-  top: 40px;            /* 离页面顶部距离 */
-  right: 60px;          /* 离右边距离 */
-}
-
-nav a {
-  color: #00ff99;
-  text-decoration: none;
-  margin-left: 25px;
-  font-style: italic;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-
