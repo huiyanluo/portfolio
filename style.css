@@ -166,3 +166,14 @@ footer a {
 footer a:hover {
   text-decoration: none;
 }
+
+#index ul {
+  line-height: 1.8; /* 调整行高 */
+  padding-left: 20px; /* 缩进 */
+  list-style: disc; /* 可选：保留圆点列表样式 */
+}
+
+#index li {
+  margin-bottom: 10px; /* 每条之间增加间距 */
+}
+
