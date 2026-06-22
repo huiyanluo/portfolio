@@ -865,6 +865,7 @@ embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/
     }
 
     function showHome() {
+      history.pushState({ view: 'home' }, '', '#');
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
       document.getElementById('view-home').classList.add('active');
       document.getElementById('backBtn').style.display = 'none';
@@ -885,6 +886,7 @@ embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/
     }
 
     function showAbout() {
+      history.pushState({ view: 'about' }, '', '#about');
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
       document.getElementById('view-about').classList.add('active');
       document.getElementById('backBtn').style.display = 'block';
@@ -893,6 +895,7 @@ embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/
     }
 
     function showProject(index) {
+      history.pushState({ view: 'project', index: index }, '', `#project-${index}`);
       currentProject = index;
       const p = projects[index];
 
@@ -961,6 +964,17 @@ if (p.embedHtml) {
       if (next < 0 || next >= projects.length) { showHome(); return; }
       showProject(next);
     }
+
+    window.addEventListener('popstate', (e) => {
+  if (!e.state || e.state.view === 'home') {
+    showHome();
+  } else if (e.state.view === 'about') {
+    showAbout();
+  } else if (e.state.view === 'project') {
+    showProject(e.state.index);
+  }
+});
+    
   </script>
 
 </body>
