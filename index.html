@@ -42,7 +42,7 @@
 
     nav a {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.65rem;
+      font-size: 0.85rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--mid);
@@ -918,29 +918,7 @@ if (p.embedHtml) {
 
       document.getElementById('proj-desc').innerHTML = p.description;
 
-      // prev / next
-      const prevEl = document.getElementById('proj-prev');
-      const nextEl = document.getElementById('proj-next');
 
-      if (index === 0) {
-        prevEl.querySelector('.proj-nav-dir').textContent = '← All Projects';
-        prevEl.querySelector('.proj-nav-title').textContent = 'Index';
-        prevEl.onclick = showHome;
-      } else {
-        prevEl.querySelector('.proj-nav-dir').textContent = '← Previous';
-        prevEl.querySelector('.proj-nav-title').textContent = projects[index - 1].title;
-        prevEl.onclick = () => showProject(index - 1);
-      }
-
-      if (index === projects.length - 1) {
-        nextEl.querySelector('.proj-nav-dir').textContent = 'All Projects →';
-        nextEl.querySelector('.proj-nav-title').textContent = 'Index';
-        nextEl.onclick = showHome;
-      } else {
-        nextEl.querySelector('.proj-nav-dir').textContent = 'Next →';
-        nextEl.querySelector('.proj-nav-title').textContent = projects[index + 1].title;
-        nextEl.onclick = () => showProject(index + 1);
-      }
 
       // switch view
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -950,11 +928,7 @@ if (p.embedHtml) {
       window.scrollTo(0, 0);
     }
 
-    function navigateProject(dir) {
-      const next = currentProject + dir;
-      if (next < 0 || next >= projects.length) { showHome(); return; }
-      showProject(next);
-    }
+
 
     window.addEventListener('popstate', (e) => {
   if (!e.state || e.state.view === 'home') {
