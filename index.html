@@ -29,7 +29,6 @@
       cursor: crosshair;
     }
 
-    /* ── NAV ── */
     nav {
       position: absolute;
       top: 0; right: 0;
@@ -37,8 +36,6 @@
       padding: 1.4rem 2rem;
       display: flex;
       gap: 2rem;
-      
-
     }
 
     nav a {
@@ -70,13 +67,12 @@
       transition: color 0.15s;
       border-left: none;
       outline: none;
-        background: none;
-  border: none;
+      background: none;
+      border: none;
     }
 
     .back-btn:hover { color: var(--accent); }
 
-    /* ── VIEWS ── */
     .view { display: none; animation: fadeIn 0.2s ease; }
     .view.active { display: block; }
 
@@ -88,137 +84,146 @@
     /* ════════════════════════════
        HOME VIEW
     ════════════════════════════ */
-    .hero {
-      padding: 5.5rem 2rem 2.5rem;
-      border-bottom: 1px solid var(--line);
-      position: relative;
-      overflow: hidden;
-    }
 
-    .hero::before {
-      content: 'Huiyan';
-      position: absolute;
-      top: -0.15em; left: -0.02em;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(10rem, 28vw, 22rem);
-      font-weight: 800;
-      color: transparent;
-      -webkit-text-stroke: 1px #1a1a1a;
-      letter-spacing: -0.04em;
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .hero-name {
-      font-family: 'DM Sans', sans-serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 30;
-      line-height: 0.88;
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
-      position: relative;
-    }
-
-    .hero-name .line2 {
-      display: block;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--accent);
-      font-size: 0.55em;
-      letter-spacing: 0.02em;
-    }
-
-    .hero-sub {
-      margin-top: 1.5rem;
-      font-size: 0.6rem;
-      letter-spacing: 0.08em;
-      color: var(--mid);
-      position: relative;
-    }
-
-    .hero-sub::before { content: '> '; color: var(--accent); }
-
-    .grid-label {
-      padding: 0.8rem 2rem;
-      font-size: 0.6rem;
-      letter-spacing: 0.08em;
-      color: var(--mid);
-      border-bottom: 1px solid var(--line);
+    .home-top {
+      padding: 5rem 2rem 2rem;
       display: flex;
       justify-content: space-between;
+      align-items: flex-start;
     }
 
-    .grid-label::before { content: '// '; color: #333; }
+    .home-top-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.6;
+      letter-spacing: 0.05em;
+    }
 
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  max-width: 1200px;
-  padding: 2rem;
-  margin: 0 auto;
-}
-    .project-card {
+    /* ── FEATURED (single column, projects 2/3/4/5) ── */
+    .featured-section {
+      padding: 0 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .featured-card {
       position: relative;
-
       overflow: hidden;
       cursor: pointer;
-      aspect-ratio: 4/3;
+      aspect-ratio: 16/9;
       background: #111;
+      margin-bottom: 1.5rem;
+      transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
     }
 
-  
-
-    .project-card img {
+    .featured-card img {
       width: 100%; height: 100%;
       object-fit: cover;
       display: block;
       opacity: 0.75;
-      transition: opacity 0.4s ease, transform 0.5s ease;
       filter: grayscale(20%) contrast(1.1);
+      transition: opacity 0.4s ease, transform 0.5s ease, filter 0.4s ease;
     }
 
-    .project-card:hover img { opacity: 0.25; transform: scale(1.03); }
+    .featured-card:hover img {
+      opacity: 1;
+      filter: grayscale(0%) contrast(1);
+      transform: scale(1.02);
+    }
 
-    .card-info {
+    .featured-card .card-hover-title {
       position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 1.2rem 1.4rem;
-      background: linear-gradient(to top, rgba(13,13,13,0.97) 0%, transparent 100%);
-    }
-
-    .card-num {
-      font-size: 0.55rem;
-      letter-spacing: 0.08em;
-      color: var(--accent);
-      margin-bottom: 0.35rem;
-    }
-
-    .card-num::before { content: '#'; }
-
-    .card-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-      font-weight: 700;
+      bottom: 1.2rem; left: 1.4rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
       color: var(--ink);
-      line-height: 1.05;
-      text-transform: uppercase;
-      letter-spacing: 0.01em;
-    }
-
-    .card-tag {
-      margin-top: 0.4rem;
-      font-size: 0.55rem;
-      letter-spacing: 0.06em;
-      color: var(--mid);
       text-transform: uppercase;
       opacity: 0;
-      transform: translateY(5px);
+      transform: translateY(6px);
       transition: opacity 0.25s ease, transform 0.25s ease;
+      pointer-events: none;
     }
 
-    .project-card:hover .card-tag { opacity: 1; transform: translateY(0); }
+    .featured-card:hover .card-hover-title {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── GRID (two columns, projects 1/6/7/8/9) ── */
+    .grid-section {
+      padding: 0 2rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .grid-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 4/3;
+      background: #111;
+      transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
+    }
+
+    .grid-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.75;
+      filter: grayscale(20%) contrast(1.1);
+      transition: opacity 0.4s ease, transform 0.5s ease;
+    }
+
+    .grid-card:hover img {
+      opacity: 1;
+      filter: grayscale(0%) contrast(1);
+      transform: scale(1.02);
+    }
+
+    .grid-card .card-hover-title {
+      position: absolute;
+      bottom: 1rem; left: 1.2rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--ink);
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      pointer-events: none;
+    }
+
+    .grid-card:hover .card-hover-title {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* highlight on hover: others dim */
+    .featured-section:has(.featured-card:hover) .featured-card:not(:hover),
+    .grid-section:has(.grid-card:hover) .grid-card:not(:hover) {
+      filter: brightness(0.4);
+    }
+
+    /* section divider */
+    .section-divider {
+      padding: 1.5rem 2rem 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 0.55rem;
+      letter-spacing: 0.12em;
+      color: var(--mid);
+      border-top: 1px solid var(--line);
+    }
+
+    /* ── BIG NAME AT BOTTOM ── */
+
 
     /* ════════════════════════════
        PROJECT VIEW
@@ -244,7 +249,7 @@
     .project-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: clamp(1rem, 3.5vw, 2rem);
-      font-weight: 800;
+      font-weight: 300;
       line-height: 0.88;
       letter-spacing: -0.02em;
       text-transform: uppercase;
@@ -267,8 +272,8 @@
       padding: 2rem;
       border-bottom: 1px solid var(--line);
       background: #080808;
-        max-width: 860px;  
-        margin: 0 auto;   
+      max-width: 860px;
+      margin: 0 auto;
     }
 
     .vimeo-wrap {
@@ -332,39 +337,6 @@
 
     .desc-body p:last-child { margin-bottom: 0; }
     .desc-body em { font-style: normal; color: var(--accent); }
-
-    .project-nav {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .proj-nav-link {
-      padding: 1.4rem 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-      cursor: pointer;
-      transition: background 0.15s ease;
-    }
-
-    .proj-nav-link:first-child { border-right: 1px solid var(--line); }
-    .proj-nav-link:hover { background: #111; }
-
-    .proj-nav-dir {
-      font-size: 0.55rem;
-      letter-spacing: 0.08em;
-      color: var(--mid);
-    }
-
-    .proj-nav-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--ink);
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-    }
 
     /* ════════════════════════════
        ABOUT VIEW
@@ -431,7 +403,6 @@
 
     .sidebar-link:last-child { border-bottom: 1px solid var(--line); }
     .sidebar-link:hover { color: var(--accent); }
-
     .sidebar-link .icon { opacity: 0.4; flex-shrink: 0; }
 
     .sidebar-link .arrow {
@@ -480,7 +451,6 @@
 
     .detail-value { font-size: 0.65rem; letter-spacing: 0.04em; color: var(--ink); }
 
-    /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--line);
       padding: 1.2rem 2rem;
@@ -491,16 +461,8 @@
       color: var(--mid);
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .project-grid { grid-template-columns: repeat(2, 1fr); }
-      .project-card:nth-child(3n) { border-right: 1px solid var(--line); }
-      .project-card:nth-child(2n) { border-right: none; }
-    }
-
     @media (max-width: 600px) {
-      .project-grid { grid-template-columns: 1fr; }
-      .project-card { border-right: none !important; aspect-ratio: 3/2; }
+      .grid-section { grid-template-columns: 1fr; }
       .project-header { grid-template-columns: 1fr; }
       .project-meta { text-align: left; }
       .desc-section { grid-template-columns: 1fr; }
@@ -518,106 +480,62 @@
 
   <nav>
     <a onclick="showHome()" id="nav-home" class="active">Home</a>
-    <a onclick="showHome(); scrollToGrid()" id="nav-project">Project</a>
     <a onclick="showAbout()" id="nav-about">About</a>
   </nav>
 
   <!-- ════════ HOME VIEW ════════ -->
   <div class="view active" id="view-home">
-    <header class="hero">
-      <h1 class="hero-name">Huiyan<span class="line2"></span></h1>
-      <p class="hero-sub">Media Arts &amp; Critical Practice</p>
-    </header>
 
-    <div class="grid-label" id="grid-anchor">
-      <span>Selected Works</span>
-      <span>2022 — 2026</span>
+    <div class="home-top">
+      <div class="home-top-name">Huiyan Luo<br>Based in London</div>
     </div>
 
-    <main class="project-grid">
-      <div class="project-card" onclick="showProject(0)">
-        <img src="images/01.png" alt="Project 01" onerror="this.style.opacity='0'">
-        <div class="card-info">
-          <div class="card-num">01</div>
-          <div class="card-title">Maternal Intelligence</div>
-          <div class="card-tag">Film · Installation</div>
-        </div>
+    <!-- FEATURED: projects 2, 3, 4, 5 (index 1,2,3,4) -->
+    <div class="featured-section">
+      <div class="featured-card" onclick="showProject(1)">
+        <img src="images/02.png" alt="" onerror="this.style.opacity='0'">
+        <div class="card-hover-title">Two perspectives: From a bird to chaos</div>
       </div>
-
-      
-
-      <div class="project-card" onclick="showProject(1)">
-        <img src="images/02.png" alt="Project 02" onerror="this.style.opacity='0'">
-        <div class="card-info">
-          <div class="card-num">02</div>
-          <div class="card-title">Two perspectives: From a bird to chaos</div>
-          <div class="card-tag">Film · Installation</div>
-        </div>
+      <div class="featured-card" onclick="showProject(2)">
+        <img src="images/03.png" alt="" onerror="this.style.opacity='0'">
+        <div class="card-hover-title">The Lotus' Narrative</div>
       </div>
-
-      <div class="project-card" onclick="showProject(2)">
-        <img src="images/03.png" alt="Project 03" onerror="this.style.opacity='0'">
-        <div class="card-info">
-          <div class="card-num">03</div>
-          <div class="card-title">The Lotus' Narrative</div>
-          <div class="card-tag">Video Game</div>
-        </div>
+      <div class="featured-card" onclick="showProject(3)">
+        <img src="images/04.png" alt="" onerror="this.style.opacity='0'">
+        <div class="card-hover-title">100￥ Challenge</div>
       </div>
-
-      <div class="project-card" onclick="showProject(3)">
-        <img src="images/04.png" alt="Project 04" onerror="this.style.opacity='0'">
-        <div class="card-info">
-          <div class="card-num">04</div>
-          <div class="card-title">100￥ Challenge</div>
-          <div class="card-tag">VR · Installation</div>
-        </div>
+      <div class="featured-card" onclick="showProject(4)">
+        <img src="images/05.png" alt="" onerror="this.style.opacity='0'">
+        <div class="card-hover-title">Caution! The Klein Loop</div>
       </div>
+    </div>
 
-      <div class="project-card" onclick="showProject(4)">
-        <img src="images/05.png" alt="Project 05" onerror="this.style.opacity='0'">
-        <div class="card-info">
-          <div class="card-num">05</div>
-          <div class="card-title">Caution! The Klein Loop</div>
-          <div class="card-tag">Film · Performance</div>
-        </div>
+    <!-- GRID: projects 1, 6, 7, 8, 9 (index 0,5,6,7,8) -->
+    <div class="section-divider">Also</div>
+    <div class="grid-section">
+      <div class="grid-card" onclick="showProject(0)">
+        <img src="images/01.png" alt="" onerror="this.style.opacity='0'">
+        <div class="card-hover-title">Maternal Intelligence</div>
       </div>
+      <div class="grid-card" onclick="showProject(5)">
+        <img src="images/06.png" alt="" onerror="this.style.opacity='0'">
+        <div class="card-hover-title">Wandering Shanghai</div>
+      </div>
+      <div class="grid-card" onclick="showProject(6)">
+        <img src="images/07.png" alt="" onerror="this.style.opacity='0'">
+        <div class="card-hover-title">IPEV</div>
+      </div>
+      <div class="grid-card" onclick="showProject(7)">
+        <img src="images/08.png" alt="" onerror="this.style.opacity='0'">
+        <div class="card-hover-title">Friend＄hip</div>
+      </div>
+      <div class="grid-card" onclick="showProject(8)">
+        <img src="images/09.png" alt="" onerror="this.style.opacity='0'">
+        <div class="card-hover-title">Violencourage</div>
+      </div>
+    </div>
 
-      <div class="project-card" onclick="showProject(5)">
-        <img src="images/06.png" alt="Project 06" onerror="this.style.opacity='0'">
-        <div class="card-info">
-          <div class="card-num">06</div>
-          <div class="card-title">Wandering Shanghai</div>
-          <div class="card-tag">Video Game</div>
-        </div>
-      </div>
-
-      <div class="project-card" onclick="showProject(6)">
-        <img src="images/07.png" alt="Project 07" onerror="this.style.opacity='0'">
-        <div class="card-info">
-          <div class="card-num">07</div>
-          <div class="card-title">IPEV</div>
-          <div class="card-tag">Film · Installation</div>
-        </div>
-      </div>
-
-      <div class="project-card" onclick="showProject(7)">
-        <img src="images/08.png" alt="Project 08" onerror="this.style.opacity='0'">
-        <div class="card-info">
-          <div class="card-num">08</div>
-          <div class="card-title">Friend＄hip</div>
-          <div class="card-tag">Browser Extension</div>
-        </div>
-      </div>
-
-      <div class="project-card" onclick="showProject(8)">
-        <img src="images/09.png" alt="Project 09" onerror="this.style.opacity='0'">
-        <div class="card-info">
-          <div class="card-num">09</div>
-          <div class="card-title">Violencourage</div>
-          <div class="card-tag">Interative Installation</div>
-        </div>
-      </div>
-    </main>
+ 
 
     <footer>
       <span>© 2026 Huiyan Luo</span>
@@ -635,13 +553,9 @@
       <div class="project-meta" id="proj-meta"></div>
     </header>
 
-    <section class="video-section">
+    <section class="video-section" id="proj-video-section">
       <div class="vimeo-wrap">
-        <iframe id="proj-video"
-          src=""
-          allowfullscreen
-          allow="autoplay; fullscreen; picture-in-picture">
-        </iframe>
+        <iframe id="proj-video" src="" allowfullscreen allow="autoplay; fullscreen; picture-in-picture"></iframe>
       </div>
     </section>
 
@@ -652,8 +566,6 @@
       </div>
       <div class="desc-body" id="proj-desc"></div>
     </section>
-
-
 
     <footer>
       <span>© 2026 Huiyan Luo</span>
@@ -683,7 +595,7 @@
           <span class="arrow">→</span>
         </a>
 
-<a href="mailto:luohuiyan922@gmail.com" class="sidebar-link">
+        <a href="mailto:luohuiyan922@gmail.com" class="sidebar-link">
           <span class="icon">✉</span>
           Email
           <span class="arrow">→</span>
@@ -692,11 +604,14 @@
 
       <section class="bio-col">
         <p>
-Huiyan Luo is an Cantonese designer based in London, interested in how digital platforms shape the way people think, behave, and connect with each other. Her work explores the stories, interfaces, and systems behind everyday technologies, especially the ones that feel natural, friendly, or invisible.        </p>
+          Huiyan Luo is a Cantonese designer based in London, interested in how digital platforms shape the way people think, behave, and connect with each other. Her work explores the stories, interfaces, and systems behind everyday technologies, especially the ones that feel natural, friendly, or invisible.
+        </p>
         <p>
-          She is curious about how technologies are often humanised, mythologised, and presented as caring or intelligent, while the labour, power structures, and infrastructures behind them remain hidden. Through research-led design, moving image, games, and interactive installations, she investigates these tensions and turns them into experiences that people can see, feel, and question.</p>
+          She is curious about how technologies are often humanised, mythologised, and presented as caring or intelligent, while the labour, power structures, and infrastructures behind them remain hidden. Through research-led design, moving image, games, and interactive installations, she investigates these tensions and turns them into experiences that people can see, feel, and question.
+        </p>
         <p>
-While trying to discover and explain problems, Huiyan enjoys building worlds, situations, and interactions that invite audiences to look at familiar technologies from different perspectives. For her, research is not the final goal but a starting point for creating new ways of seeing and experiencing the systems that shape contemporary life.        
+          While trying to discover and explain problems, Huiyan enjoys building worlds, situations, and interactions that invite audiences to look at familiar technologies from different perspectives. For her, research is not the final goal but a starting point for creating new ways of seeing and experiencing the systems that shape contemporary life.
+        </p>
 
         <div class="bio-details">
           <div class="detail-item">
@@ -709,7 +624,7 @@ While trying to discover and explain problems, Huiyan enjoys building worlds, si
           </div>
           <div class="detail-item">
             <div class="detail-label">Education</div>
-            <div class="detail-value">MA — Interaction Design, UAL LCC, London<br>BA — [Electronic Commerce, Tianjing University, China]</div>
+            <div class="detail-value">MA — Interaction Design, UAL LCC, London<br>BA — Electronic Commerce, Tianjin University, China</div>
           </div>
         </div>
       </section>
@@ -722,9 +637,6 @@ While trying to discover and explain problems, Huiyan enjoys building worlds, si
   </div>
 
   <script>
-    // ════════════════════════════════════════
-    // PROJECT DATA — edit everything here
-    // ════════════════════════════════════════
     const projects = [
       {
         title: "Maternal Intelligence",
@@ -732,7 +644,6 @@ While trying to discover and explain problems, Huiyan enjoys building worlds, si
         medium: "Film, Installation",
         location: "London",
         image: "images/01.png",
-        vimeoId: "",
         tags: ["Dual-Screen Installation", "Interactive", "AI / Feminist Theory", "2026"],
         description: `
           <p><em>Maternal Intelligence</em> is a dual-screen installation that critiques how AI safety and alignment discourse appropriates the language of maternal instinct as a technical and rhetorical framework.</p>
@@ -758,11 +669,10 @@ While trying to discover and explain problems, Huiyan enjoys building worlds, si
         year: "2024",
         medium: "Game",
         location: "China",
-     
         embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/emmOKUM3gTs" allowfullscreen></iframe>`,
-        tags: ["Interactive", "Web", "2025"],
+        tags: ["Interactive", "Web", "2024"],
         description: `
-          <p><em>The Lotus' Narrative</em>tells about the world of the Lotus Eaters, which is a tranquil haven that rejects grand narratives, embodying a longing to resist binary opposition and the suppression of individuality. This vision forms the narrative foundation of the project.</p>
+          <p><em>The Lotus' Narrative</em> tells about the world of the Lotus Eaters, which is a tranquil haven that rejects grand narratives, embodying a longing to resist binary opposition and the suppression of individuality. This vision forms the narrative foundation of the project.</p>
           <p>The project examines how China's pursuit of collective achievement and efficiency often neglects individual experiences and attributes, critically reflecting on the rationale of grand narratives built on suppressing individual differences. The game follows an Odyssean crew member tasked with the grand mission of locating lost comrades. However, within the realm of the Lotus Eaters, they come to understand the profound significance of personal experiences and micro-narratives, ultimately choosing to stay and abandon collective conformity.</p>
           <p>Through a decentralized interactive experience, the game invites players to question grand narratives, appreciate individual perspectives, and reconsider the meaning of personal value and identity.</p>
         `
@@ -770,14 +680,12 @@ While trying to discover and explain problems, Huiyan enjoys building worlds, si
       {
         title: "100￥ Challenge",
         year: "2024",
-        medium: "Research",
+        medium: "Installation",
         location: "China",
-
-embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/YK5rvwLirnQ" allowfullscreen></iframe>`,
-        tags: ["Research", "Text", "2024"],
+        embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/YK5rvwLirnQ" allowfullscreen></iframe>`,
+        tags: ["Installation", "Interactive", "2024"],
         description: `
           <p><em>100￥ Challenge</em>, inspired by the "100 Yuan Challenge" incident on China's largest food delivery platform, addresses hidden labor exploitation, platform capitalism, and shifting responsibility. An interactive installation immerses the audience in the role of a delivery worker, highlighting the struggles of self-worth under platform-driven pressures and the unconscious exploitation by consumers. By simulating unsanitary shops and whistleblowing, the installation reveals the helplessness of workers manipulated by the platform.</p>
-         
         `
       },
       {
@@ -785,7 +693,7 @@ embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/
         year: "2024",
         medium: "Game",
         location: "China",
-embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/iVsssRJsbyk" allowfullscreen></iframe>`,
+        embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/iVsssRJsbyk" allowfullscreen></iframe>`,
         tags: ["Game", "Narrative", "2024"],
         description: `
           <p>As social media becomes a vehicle for self-presentation, does it better help us with identity construction and identification?</p>
@@ -797,11 +705,10 @@ embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/
         year: "2024",
         medium: "Video",
         location: "China",
-embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/gGxyj4PlLPc" allowfullscreen></iframe>`,
+        embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/gGxyj4PlLPc" allowfullscreen></iframe>`,
         tags: ["Video", "Essay", "2024"],
         description: `
           <p><em>Wandering Shanghai</em> uses a Shanghai-based walking simulator to show how social media turns travel into image-driven, platform-guided experiences. When guidance disappears, audiences feel disoriented, revealing how algorithms shape perception and turn real spaces into co-produced spectacles.</p>
-          
         `
       },
       {
@@ -809,32 +716,30 @@ embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/
         year: "2025",
         medium: "Performance",
         location: "London",
-embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/zmvw7ZUw_pY" allowfullscreen></iframe>`,
+        embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/zmvw7ZUw_pY" allowfullscreen></iframe>`,
         tags: ["Performance", "Live", "2025"],
         description: `
-          <p><em>IPEV</em>is a collaborative project with Paridhi Khanduri, Yashu Wu and Tianyang Lu.</p>
-          <p>The Film and Expanded Cinema project explores how the UK e-visa application shapes the immigrant experience, reflecting broader anti-immigration narratives in media. By juxtaposing the intimate, bureaucratic process with archival news and social media, and using dual projections: one for the digital application, one for external media, we allow audiences to inhabit the immigrant’s position, navigating both administrative systems and societal hostility.</p>
-       
+          <p><em>IPEV</em> is a collaborative project with Paridhi Khanduri, Yashu Wu and Tianyang Lu.</p>
+          <p>The Film and Expanded Cinema project explores how the UK e-visa application shapes the immigrant experience, reflecting broader anti-immigration narratives in media. By juxtaposing the intimate, bureaucratic process with archival news and social media, and using dual projections: one for the digital application, one for external media, we allow audiences to inhabit the immigrant's position, navigating both administrative systems and societal hostility.</p>
         `
       },
       {
-        title: "Friend$hip",
+        title: "Friend＄hip",
         year: "2023",
-        medium: "Photography",
+        medium: "Browser Extension",
         location: "London",
-embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/QHbsg6ldL8w" allowfullscreen></iframe>`,
-        tags: ["Photography", "Archive", "2023"],
+        embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/QHbsg6ldL8w" allowfullscreen></iframe>`,
+        tags: ["Browser Extension", "UX", "2023"],
         description: `
-          <p><em>Friend$hip</em>examines how UX/UI features like TikTok’s “fire streaks” are designed to serve platform business goals rather than purely social needs. My browser extension reinterprets this: clicking friends’ messages grows a central flame and triggers a “friendship medal,” while a panel tracks the user’s attention versus the platform’s profit, revealing the mechanics behind engagement.</p>
-
+          <p><em>Friend＄hip</em> examines how UX/UI features like TikTok's "fire streaks" are designed to serve platform business goals rather than purely social needs. My browser extension reinterprets this: clicking friends' messages grows a central flame and triggers a "friendship medal," while a panel tracks the user's attention versus the platform's profit, revealing the mechanics behind engagement.</p>
         `
       },
       {
         title: "ViolencEnourage",
         year: "2022",
-        medium: "Sound",
+        medium: "Installation",
         location: "China",
-embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/dmvGvh65ZQQ" allowfullscreen></iframe>`,
+        embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/dmvGvh65ZQQ" allowfullscreen></iframe>`,
         tags: ["Sound", "Installation", "2022"],
         description: `
           <p>What emotions come to mind when we talk about communication? Is it love or pain? When I think about the concept and feeling of encouragement, I realize that it is not a simple division of good or bad. Instead, the two often co-exist.</p>
@@ -843,14 +748,8 @@ embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/
       }
     ];
 
-    // ════════════════════════════════════════
-    // STATE
-    // ════════════════════════════════════════
     let currentProject = 0;
 
-    // ════════════════════════════════════════
-    // VIEW SWITCHING
-    // ════════════════════════════════════════
     function setActiveNav(id) {
       document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
       if (id) document.getElementById(id).classList.add('active');
@@ -863,18 +762,6 @@ embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/
       document.getElementById('backBtn').style.display = 'none';
       setActiveNav('nav-home');
       window.scrollTo(0, 0);
-    }
-
-    function scrollToGrid() {
-      // If already on home, scroll to grid; otherwise show home first then scroll
-      if (document.getElementById('view-home').classList.contains('active')) {
-        document.getElementById('grid-anchor').scrollIntoView({ behavior: 'smooth' });
-      } else {
-        showHome();
-        setTimeout(() => {
-          document.getElementById('grid-anchor').scrollIntoView({ behavior: 'smooth' });
-        }, 50);
-      }
     }
 
     function showAbout() {
@@ -891,37 +778,31 @@ embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/
       currentProject = index;
       const p = projects[index];
 
-      // populate
       document.getElementById('proj-num').textContent = String(index + 1).padStart(2, '0') + ' / 09';
       document.getElementById('proj-title').textContent = p.title;
-
       document.getElementById('proj-meta').innerHTML = `
         <div class="meta-item">${p.year}</div>
         <div class="meta-item">${p.medium}</div>
         <div class="meta-item">${p.location}</div>
       `;
 
-const videoSection = document.querySelector('.video-section');
-if (p.embedHtml) {
-  videoSection.innerHTML = `<div class="vimeo-wrap">${p.embedHtml}</div>`;
-} else if (p.vimeoId) {
-  videoSection.innerHTML = `<div class="vimeo-wrap"><iframe
-    src="https://player.vimeo.com/video/${p.vimeoId}?title=0&byline=0&portrait=0&color=c8401a"
-    allowfullscreen allow="autoplay; fullscreen; picture-in-picture"></iframe></div>`;
-} else if (p.image) {
-  videoSection.innerHTML = `<img src="${p.image}" style="width:100%;max-width:860px;display:block;margin:0 auto;">`;
-} else {
-  videoSection.innerHTML = '';
-}
+      const videoSection = document.getElementById('proj-video-section');
+      if (p.embedHtml) {
+        videoSection.innerHTML = `<div class="vimeo-wrap">${p.embedHtml}</div>`;
+      } else if (p.vimeoId) {
+        videoSection.innerHTML = `<div class="vimeo-wrap"><iframe
+          src="https://player.vimeo.com/video/${p.vimeoId}?title=0&byline=0&portrait=0&color=c8401a"
+          allowfullscreen allow="autoplay; fullscreen; picture-in-picture"></iframe></div>`;
+      } else if (p.image) {
+        videoSection.innerHTML = `<img src="${p.image}" style="width:100%;max-width:860px;display:block;margin:0 auto;">`;
+      } else {
+        videoSection.innerHTML = '';
+      }
 
       document.getElementById('proj-tags').innerHTML =
         p.tags.map(t => `<div class="tag">${t}</div>`).join('');
-
       document.getElementById('proj-desc').innerHTML = p.description;
 
-
-
-      // switch view
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
       document.getElementById('view-project').classList.add('active');
       document.getElementById('backBtn').style.display = 'block';
@@ -929,18 +810,15 @@ if (p.embedHtml) {
       window.scrollTo(0, 0);
     }
 
-
-
     window.addEventListener('popstate', (e) => {
-  if (!e.state || e.state.view === 'home') {
-    showHome();
-  } else if (e.state.view === 'about') {
-    showAbout();
-  } else if (e.state.view === 'project') {
-    showProject(e.state.index);
-  }
-});
-    
+      if (!e.state || e.state.view === 'home') {
+        showHome();
+      } else if (e.state.view === 'about') {
+        showAbout();
+      } else if (e.state.view === 'project') {
+        showProject(e.state.index);
+      }
+    });
   </script>
 
 </body>
