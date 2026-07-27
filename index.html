@@ -65,7 +65,6 @@
       cursor: pointer;
       display: none;
       transition: color 0.15s;
-      border-left: none;
       outline: none;
       background: none;
       border: none;
@@ -325,6 +324,31 @@
     .desc-body p:last-child { margin-bottom: 0; }
     .desc-body em { font-style: normal; color: var(--accent); }
 
+    /* ── PROJECT PHOTOS ── */
+    .project-photos {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .photo-row {
+      margin-bottom: 2.5rem;
+    }
+
+    .photo-row img {
+      width: 100%;
+      display: block;
+      outline: 1px solid var(--line);
+    }
+
+    .photo-caption {
+      margin-top: 0.8rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.06em;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
     .page-header {
       padding: 5.5rem 2rem 2rem;
       border-bottom: 1px solid var(--line);
@@ -474,47 +498,51 @@
       <div class="home-top-name">Huiyan Luo</div>
     </div>
 
-    <!-- FEATURED: projects 2,3,4,5,9 (index 1,2,3,4,8) -->
+    <!-- FEATURED: index 0,2,3,4,5,9 -->
     <div class="section-divider">Selected Works</div>
     <div class="featured-section">
-      <div class="featured-card" onclick="showProject(1)">
+      <div class="featured-card" onclick="showProject(0)">
+        <img src="images/10.png" alt="" onerror="this.style.opacity='0'">
+        <div class="card-hover-title">Spirited Away 2026: Distillation</div>
+      </div>
+      <div class="featured-card" onclick="showProject(2)">
         <img src="images/02.png" alt="" onerror="this.style.opacity='0'">
         <div class="card-hover-title">Two perspectives: From a bird to chaos</div>
       </div>
-      <div class="featured-card" onclick="showProject(2)">
+      <div class="featured-card" onclick="showProject(3)">
         <img src="images/03.png" alt="" onerror="this.style.opacity='0'">
         <div class="card-hover-title">The Lotus' Narrative</div>
       </div>
-      <div class="featured-card" onclick="showProject(3)">
+      <div class="featured-card" onclick="showProject(4)">
         <img src="images/04.png" alt="" onerror="this.style.opacity='0'">
         <div class="card-hover-title">100￥ Challenge</div>
       </div>
-      <div class="featured-card" onclick="showProject(4)">
+      <div class="featured-card" onclick="showProject(5)">
         <img src="images/05.png" alt="" onerror="this.style.opacity='0'">
         <div class="card-hover-title">Caution! The Klein Loop</div>
       </div>
-      <div class="featured-card" onclick="showProject(8)">
+      <div class="featured-card" onclick="showProject(9)">
         <img src="images/09.png" alt="" onerror="this.style.opacity='0'">
         <div class="card-hover-title">Homeostat</div>
       </div>
     </div>
 
-    <!-- GRID: projects 1,6,7,8 (index 0,5,6,7) -->
+    <!-- GRID: index 1,6,7,8 -->
     <div class="section-divider">Other Works</div>
     <div class="grid-section">
-      <div class="grid-card" onclick="showProject(0)">
+      <div class="grid-card" onclick="showProject(1)">
         <img src="images/01.png" alt="" onerror="this.style.opacity='0'">
         <div class="card-hover-title">Maternal Intelligence</div>
       </div>
-      <div class="grid-card" onclick="showProject(5)">
+      <div class="grid-card" onclick="showProject(6)">
         <img src="images/06.png" alt="" onerror="this.style.opacity='0'">
         <div class="card-hover-title">Wandering Shanghai</div>
       </div>
-      <div class="grid-card" onclick="showProject(6)">
+      <div class="grid-card" onclick="showProject(7)">
         <img src="images/07.png" alt="" onerror="this.style.opacity='0'">
         <div class="card-hover-title">IPEV</div>
       </div>
-      <div class="grid-card" onclick="showProject(7)">
+      <div class="grid-card" onclick="showProject(8)">
         <img src="images/08.png" alt="" onerror="this.style.opacity='0'">
         <div class="card-hover-title">Friend＄hip</div>
       </div>
@@ -530,17 +558,13 @@
   <div class="view" id="view-project">
     <header class="project-header">
       <div>
-        <div class="project-num-label" id="proj-num">01 / 09</div>
-        <h1 class="project-title" id="proj-title">Maternal Intelligence</h1>
+        <div class="project-num-label" id="proj-num">01 / 10</div>
+        <h1 class="project-title" id="proj-title"></h1>
       </div>
       <div class="project-meta" id="proj-meta"></div>
     </header>
 
-    <section class="video-section" id="proj-video-section">
-      <div class="vimeo-wrap">
-        <iframe id="proj-video" src="" allowfullscreen allow="autoplay; fullscreen; picture-in-picture"></iframe>
-      </div>
-    </section>
+    <section class="video-section" id="proj-video-section"></section>
 
     <section class="desc-section">
       <div class="desc-sidebar">
@@ -549,6 +573,8 @@
       </div>
       <div class="desc-body" id="proj-desc"></div>
     </section>
+
+    <div class="project-photos" id="proj-photos"></div>
 
     <footer>
       <span>© 2026 Huiyan Luo</span>
@@ -613,10 +639,30 @@
   <script>
     const projects = [
       {
+        title: "Spirited Away 2026: Distillation",
+        year: "July 2026",
+        medium: "Visual Novel, Desktop Installation",
+        location: "London",
+        image: "images/10.png",
+        tags: ["Visual Novel", "Interactive Installation", "AI Labour", "2026"],
+        description: `
+          <p>This project draws on GitHub's Colleague.skill, also known as the Distillation Project, situating it within the growing use of AI agents in the workplace. It examines how companies collect, organise, and repurpose employees' knowledge, skills, and working behaviours as digital assets.</p>
+          <p>Through a visual novel and a desktop-based interactive installation, the work sets this against Miyazaki's <em>Spirited Away</em> (2001). In the bathhouse, coercion was visible: a strict boss, an unfair contract, a stolen name. Twenty-five years on, the mechanism is gentler and harder to see. No one takes your name. Instead, your name becomes a row in a dataset, and the parts of you that can be modelled quietly become the property of the system.</p>
+          <p>If distillation is a new form of Spiriting Away, it is one that arrives as efficiency rather than violence. The project asks: when knowledge, skills, and working practices can be preserved, reproduced, and automated, what remains beyond the reach of the system? And what do we still have to act on it?</p>
+        `,
+        photos: [
+          { src: "images/distillation-01.jpg", caption: "" },
+          { src: "images/distillation-02.jpg", caption: "" },
+          { src: "images/distillation-03.jpg", caption: "" },
+        ]
+      },
+      {
         title: "Maternal Intelligence",
         year: "2026",
         medium: "Film, Installation",
+        location: "London",
         image: "images/01.png",
+        tags: ["Dual-Screen Installation", "Interactive", "AI / Feminist Theory", "2026"],
         description: `
           <p><em>Maternal Intelligence</em> is a dual-screen installation that critiques how AI safety and alignment discourse appropriates the language of maternal instinct as a technical and rhetorical framework.</p>
           <p>The work presents two simultaneous views: a participant navigating what appears to be an AI companionship interface, and a backend administrative panel revealing the corporate logics behind it. The piece stages a double exposure — care as product, intimacy as data.</p>
@@ -626,7 +672,9 @@
         title: "Two perspectives: From a bird to chaos",
         year: "2026",
         medium: "Film",
+        location: "London",
         vimeoId: "1199216710",
+        tags: ["Film", "Performance", "2026"],
         description: `
           <p><em>Two perspectives: From a bird to chaos</em> was created in collaboration with the Autonomy Institute in London and exhibited at IKLECTIK as part of a design fiction programme exploring the political economy of space expansion.</p>
           <p>Focusing on the theme of Waste and Unintentional Archives, the project examines the growing accumulation of human-made debris in orbit and asks what these discarded objects reveal about contemporary space development. Defunct satellites, rocket stages and abandoned equipment were never intended to function as records, yet they form an unintended archive of human activity, exposing patterns of extraction, consumption and the assumption that space can serve as an unlimited frontier for disposal.</p>
@@ -638,7 +686,9 @@
         title: "The Lotus' Narrative",
         year: "2024",
         medium: "Game",
+        location: "China",
         embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/emmOKUM3gTs" allowfullscreen></iframe>`,
+        tags: ["Interactive", "Web", "2024"],
         description: `
           <p><em>The Lotus' Narrative</em> tells about the world of the Lotus Eaters, which is a tranquil haven that rejects grand narratives, embodying a longing to resist binary opposition and the suppression of individuality. This vision forms the narrative foundation of the project.</p>
           <p>The project examines how China's pursuit of collective achievement and efficiency often neglects individual experiences and attributes, critically reflecting on the rationale of grand narratives built on suppressing individual differences. The game follows an Odyssean crew member tasked with the grand mission of locating lost comrades. However, within the realm of the Lotus Eaters, they come to understand the profound significance of personal experiences and micro-narratives, ultimately choosing to stay and abandon collective conformity.</p>
@@ -649,6 +699,7 @@
         title: "100￥ Challenge",
         year: "2024",
         medium: "Interactive Installation, VR",
+        location: "China",
         embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/YK5rvwLirnQ" allowfullscreen></iframe>`,
         tags: ["Installation", "Interactive", "2024"],
         description: `
@@ -659,7 +710,9 @@
         title: "Caution! The Klein Loop",
         year: "2023",
         medium: "Performance, Short-film",
+        location: "China",
         embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/iVsssRJsbyk" allowfullscreen></iframe>`,
+        tags: ["Game", "Narrative", "2023"],
         description: `
           <p>As social media becomes a vehicle for self-presentation, does it better help us with identity construction and identification?</p>
           <p>People tend to use alt-account to regain the initiative of self. However, in the expression of multiple identities, the real self is broken into pieces. Meanwhile, can we still maintain our authentic expression in the face of different expectations from different accounts?</p>
@@ -669,7 +722,9 @@
         title: "Wandering Shanghai",
         year: "2025",
         medium: "Game",
+        location: "China",
         embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/gGxyj4PlLPc" allowfullscreen></iframe>`,
+        tags: ["Video", "Essay", "2025"],
         description: `
           <p><em>Wandering Shanghai</em> uses a Shanghai-based walking simulator to show how social media turns travel into image-driven, platform-guided experiences. When guidance disappears, audiences feel disoriented, revealing how algorithms shape perception and turn real spaces into co-produced spectacles.</p>
         `
@@ -678,7 +733,9 @@
         title: "IPEV",
         year: "2025",
         medium: "Film",
+        location: "London",
         embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/zmvw7ZUw_pY" allowfullscreen></iframe>`,
+        tags: ["Performance", "Live", "2025"],
         description: `
           <p><em>IPEV</em> is a collaborative project with Paridhi Khanduri, Yashu Wu and Tianyang Lu.</p>
           <p>The Film and Expanded Cinema project explores how the UK e-visa application shapes the immigrant experience, reflecting broader anti-immigration narratives in media. By juxtaposing the intimate, bureaucratic process with archival news and social media, and using dual projections: one for the digital application, one for external media, we allow audiences to inhabit the immigrant's position, navigating both administrative systems and societal hostility.</p>
@@ -688,7 +745,9 @@
         title: "Friend＄hip",
         year: "2025",
         medium: "Browser Extension",
+        location: "London",
         embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/QHbsg6ldL8w" allowfullscreen></iframe>`,
+        tags: ["Browser Extension", "UX", "2025"],
         description: `
           <p><em>Friend＄hip</em> examines how UX/UI features like TikTok's "fire streaks" are designed to serve platform business goals rather than purely social needs. My browser extension reinterprets this: clicking friends' messages grows a central flame and triggers a "friendship medal," while a panel tracks the user's attention versus the platform's profit, revealing the mechanics behind engagement.</p>
         `
@@ -697,7 +756,9 @@
         title: "Homeostat",
         year: "2022",
         medium: "Installation",
+        location: "China",
         embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/dmvGvh65ZQQ" allowfullscreen></iframe>`,
+        tags: ["Installation", "2022"],
         description: `
           <p>Are humans and systems jointly maintaining a fragile balance?</p>
           <p>In Cybernetics (1948), Norbert Wiener proposed that systems maintain stable operation by continuously receiving feedback about their own outputs and using that information to adjust subsequent behaviour. W. Ross Ashby further developed this idea by arguing that systems naturally strive to keep their internal variables within a viable range, a condition he described as homeostasis. Any deviation from this range triggers self-correcting mechanisms that guide the system back towards equilibrium.</p>
@@ -737,12 +798,12 @@
       currentProject = index;
       const p = projects[index];
 
-      document.getElementById('proj-num').textContent = String(index + 1).padStart(2, '0') + ' / 09';
+      document.getElementById('proj-num').textContent = String(index + 1).padStart(2, '0') + ' / ' + projects.length;
       document.getElementById('proj-title').textContent = p.title;
       document.getElementById('proj-meta').innerHTML = `
         <div class="meta-item">${p.year}</div>
         <div class="meta-item">${p.medium}</div>
-        <div class="meta-item">${p.location}</div>
+        <div class="meta-item">${p.location || ''}</div>
       `;
 
       const videoSection = document.getElementById('proj-video-section');
@@ -759,8 +820,21 @@
       }
 
       document.getElementById('proj-tags').innerHTML =
-        p.tags.map(t => `<div class="tag">${t}</div>`).join('');
+        (p.tags || []).map(t => `<div class="tag">${t}</div>`).join('');
       document.getElementById('proj-desc').innerHTML = p.description;
+
+      // photos
+      const photosEl = document.getElementById('proj-photos');
+      if (p.photos && p.photos.length) {
+        photosEl.innerHTML = p.photos.map(ph => `
+          <div class="photo-row">
+            <img src="${ph.src}" alt="${ph.caption || ''}">
+            ${ph.caption ? `<div class="photo-caption">${ph.caption}</div>` : ''}
+          </div>
+        `).join('');
+      } else {
+        photosEl.innerHTML = '';
+      }
 
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
       document.getElementById('view-project').classList.add('active');
