@@ -750,9 +750,6 @@
         videoSection.innerHTML = '';
       }
 
-      document.getElementById('proj-tags').innerHTML =
-        (p.tags || []).map(t => `<div class="tag">${t}</div>`).join('');
-      document.getElementById('proj-desc').innerHTML = p.description;
 
       const photosEl = document.getElementById('proj-photos');
       if (p.photos && p.photos.length) {
