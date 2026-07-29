@@ -751,7 +751,10 @@
         videoSection.innerHTML = '';
       }
 
-
+const descEl = document.getElementById("proj-desc");
+if (descEl) {
+  descEl.innerHTML = p.description || "";
+}
       const photosEl = document.getElementById('proj-photos');
       if (p.photos && p.photos.length) {
         photosEl.innerHTML = p.photos.map(ph => `
