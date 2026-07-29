@@ -10,13 +10,13 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root {
---bg: #faf9f6;
-  --ink: #1a1a18;
-  --mid: #8a8a85;
-  --line: #dddbd6;
-  --accent: #7a9e7e;
-}
+    :root {
+      --bg: #f6f7f8;
+      --ink: #1a1a18;
+      --mid: #8a8a85;
+      --line: #dddbd6;
+      --accent: #7a9e7e;
+    }
 
     html { scroll-behavior: smooth; }
 
@@ -105,17 +105,14 @@
 
     .featured-card {
       position: relative;
-      overflow: hidden;
       cursor: pointer;
-      aspect-ratio: 16/9;
-      background: #faf9f6;
+      background: #e8e8ea;
       margin-bottom: 2.5rem;
-      transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
+      transition: filter 0.4s ease;
     }
 
     .featured-card img {
-      width: 100%; height: 100%;
-      object-fit: cover;
+      width: 100%;
       display: block;
       opacity: 0.9;
       filter: grayscale(20%) contrast(1.1);
@@ -125,24 +122,16 @@
     .featured-card:hover img {
       opacity: 1;
       filter: grayscale(0%) contrast(1);
-      transform: scale(1.02);
     }
 
-    .featured-card .card-hover-title {
-  position: relative;
-  padding: 0.6rem 0 0;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
-  color: var(--mid);
-  text-transform: uppercase;
-  opacity: 1;
-  transform: none;
-  transition: none;
-  pointer-events: none;
-}
-
-
+    .card-hover-title {
+      padding: 0.5rem 0 0;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--mid);
+      text-transform: uppercase;
+    }
 
     .grid-section {
       padding: 0 2rem 2rem;
@@ -155,16 +144,13 @@
 
     .grid-card {
       position: relative;
-      overflow: hidden;
       cursor: pointer;
-      aspect-ratio: 4/3;
-      background: #faf9f6;
-      transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
+      background: #e8e8ea;
+      transition: filter 0.4s ease;
     }
 
     .grid-card img {
-      width: 100%; height: 100%;
-      object-fit: cover;
+      width: 100%;
       display: block;
       opacity: 0.9;
       filter: grayscale(20%) contrast(1.1);
@@ -174,28 +160,20 @@
     .grid-card:hover img {
       opacity: 1;
       filter: grayscale(0%) contrast(1);
-      transform: scale(1.02);
     }
 
     .grid-card .card-hover-title {
-      position: absolute;
-      bottom: 1rem; left: 1.2rem;
+      padding: 0.5rem 0 0;
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.6rem;
       letter-spacing: 0.1em;
-      color: var(--ink);
+      color: var(--mid);
       text-transform: uppercase;
-      opacity: 0;
-      transform: translateY(6px);
-      transition: opacity 0.25s ease, transform 0.25s ease;
-      pointer-events: none;
     }
-
-
 
     .featured-section:has(.featured-card:hover) .featured-card:not(:hover),
     .grid-section:has(.grid-card:hover) .grid-card:not(:hover) {
-      filter: brightness(0.4);
+      filter: brightness(0.5);
     }
 
     .section-divider {
@@ -251,7 +229,6 @@
     .video-section {
       padding: 2rem;
       border-bottom: 1px solid var(--line);
-      background: #ece9e3;
       max-width: 860px;
       margin: 0 auto;
     }
@@ -289,7 +266,7 @@
       margin-bottom: 1.2rem;
     }
 
-    .desc-sidebar-label::before { content: '// '; color: #2a2a2a; }
+    .desc-sidebar-label::before { content: '// '; color: #ccc; }
 
     .desc-sidebar-tags { display: flex; flex-direction: column; gap: 0; }
 
@@ -301,7 +278,7 @@
       border-top: 1px solid var(--line);
     }
 
-    .tag::before { content: '— '; color: #2a2a2a; }
+    .tag::before { content: '— '; color: #ccc; }
 
     .desc-body { padding: 2.5rem 3rem 2.5rem 2.5rem; }
 
@@ -309,7 +286,7 @@
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.82rem;
       line-height: 1.8;
-      color: #999;
+      color: var(--mid);
       max-width: 64ch;
       margin-bottom: 1.4rem;
       letter-spacing: 0.01em;
@@ -318,7 +295,6 @@
     .desc-body p:last-child { margin-bottom: 0; }
     .desc-body em { font-style: normal; color: var(--accent); }
 
-    /* ── PROJECT PHOTOS ── */
     .project-photos {
       max-width: 860px;
       margin: 0 auto;
@@ -387,7 +363,7 @@
       margin-bottom: 1.2rem;
     }
 
-    .sidebar-label::before { content: '// '; color: #2a2a2a; }
+    .sidebar-label::before { content: '// '; color: #ccc; }
 
     .sidebar-link {
       display: flex;
@@ -423,7 +399,7 @@
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.82rem;
       line-height: 1.9;
-      color: #999;
+      color: var(--mid);
       max-width: 62ch;
       margin-bottom: 1.6rem;
       letter-spacing: 0.01em;
@@ -449,7 +425,7 @@
       color: var(--mid);
     }
 
-    .detail-label::before { content: '// '; color: #2a2a2a; }
+    .detail-label::before { content: '// '; color: #ccc; }
 
     .detail-value { font-size: 0.65rem; letter-spacing: 0.04em; color: var(--ink); }
 
@@ -492,7 +468,6 @@
       <div class="home-top-name">Huiyan Luo</div>
     </div>
 
-    <!-- FEATURED: index 0,2,3,4,5,9 -->
     <div class="section-divider">Selected Works</div>
     <div class="featured-section">
       <div class="featured-card" onclick="showProject(0)">
@@ -521,7 +496,6 @@
       </div>
     </div>
 
-    <!-- GRID: index 1,6,7,8 -->
     <div class="section-divider">Other Works</div>
     <div class="grid-section">
       <div class="grid-card" onclick="showProject(1)">
@@ -805,7 +779,7 @@
         videoSection.innerHTML = `<div class="vimeo-wrap">${p.embedHtml}</div>`;
       } else if (p.vimeoId) {
         videoSection.innerHTML = `<div class="vimeo-wrap"><iframe
-          src="https://player.vimeo.com/video/${p.vimeoId}?title=0&byline=0&portrait=0&color=c8401a"
+          src="https://player.vimeo.com/video/${p.vimeoId}?title=0&byline=0&portrait=0&color=7a9e7e"
           allowfullscreen allow="autoplay; fullscreen; picture-in-picture"></iframe></div>`;
       } else if (p.image) {
         videoSection.innerHTML = `<img src="${p.image}" style="width:100%;max-width:860px;display:block;margin:0 auto;">`;
@@ -817,7 +791,6 @@
         (p.tags || []).map(t => `<div class="tag">${t}</div>`).join('');
       document.getElementById('proj-desc').innerHTML = p.description;
 
-      // photos
       const photosEl = document.getElementById('proj-photos');
       if (p.photos && p.photos.length) {
         photosEl.innerHTML = p.photos.map(ph => `
