@@ -17,7 +17,7 @@
       --accent: #7a9e7e;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; color-scheme: light; }
 
     body {
       background: var(--bg);
@@ -78,9 +78,7 @@
 
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* ════════════════════════
-       HOME
-    ════════════════════════ */
+    /* ════════ HOME ════════ */
     .home-hero {
       padding: 10rem 2rem 4rem;
       text-align: center;
@@ -114,17 +112,16 @@
       color: var(--mid);
       border-bottom: 1px solid var(--line);
       text-align: center;
-      max-width: 1100px;
-      margin: 0 auto;
     }
 
-    /* ── HOME GRID ── */
+    /* HOME GRID — 6 cards only */
     .home-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
       margin: 0 auto;
-      padding: 0 8rem;
+      padding: 1.5rem 8rem;
+      max-width: 1400px;
     }
 
     .home-card {
@@ -144,12 +141,8 @@
       transition: filter 0.4s ease, transform 0.5s ease;
     }
 
-    .home-card:hover img {
-      filter: grayscale(0%);
-      transform: scale(1.03);
-    }
+    .home-card:hover img { filter: grayscale(0%); transform: scale(1.03); }
 
-    /* hover overlay */
     .home-card-overlay {
       position: absolute;
       inset: 0;
@@ -188,33 +181,37 @@
       color: var(--accent);
     }
 
-    /* ════════════════════════
-       WORK VIEW
-    ════════════════════════ */
+    /* View all link */
+    .home-view-all {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .home-view-all a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+
+    .home-view-all a:hover { color: var(--accent); }
+
+    /* ════════ WORK VIEW ════════ */
     .work-top {
-      padding: 6rem 2rem 0;
+      padding: 5rem 2rem 0;
       border-bottom: 1px solid var(--line);
-    }
-
-    .work-title-row {
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      padding-bottom: 1.2rem;
-      gap: 3rem;
-    }
-
-    .work-page-title {
-      font-family: 'DM Sans', sans-serif;
-      font-size: clamp(1.4rem, 3vw, 2rem);
-      font-weight: 300;
-      color: var(--ink);
-      letter-spacing: -0.01em;
+      text-align: center;
     }
 
     .filter-bar {
-      display: flex;
-      gap: 1.5rem;
+      display: inline-flex;
+      gap: 2rem;
+      padding-bottom: 1.2rem;
     }
 
     .filter-btn {
@@ -234,11 +231,18 @@
     .filter-btn:hover { color: var(--ink); }
     .filter-btn.active { color: var(--ink); border-bottom-color: var(--ink); }
 
-    /* work grid */
+    /* work grid — all = 3 cols, filtered = 1 col */
     .work-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0;
+      gap: 1rem;
+      margin: 0 auto;
+      padding: 1.5rem 8rem;
+      max-width: 1400px;
+    }
+
+    .work-grid.filtered {
+      grid-template-columns: 1fr;
     }
 
     .work-card {
@@ -247,11 +251,13 @@
       cursor: pointer;
       aspect-ratio: 4/3;
       background: #eee;
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
+      outline: 1px solid var(--line);
     }
 
-    .work-card:nth-child(3n) { border-right: none; }
+    /* single-col: wider but not too tall */
+    .work-grid.filtered .work-card {
+      aspect-ratio: 16/7;
+    }
 
     .work-card img {
       width: 100%; height: 100%;
@@ -261,10 +267,7 @@
       transition: filter 0.4s ease, transform 0.5s ease;
     }
 
-    .work-card:hover img {
-      filter: grayscale(0%);
-      transform: scale(1.03);
-    }
+    .work-card:hover img { filter: grayscale(0%); transform: scale(1.03); }
 
     .work-card-overlay {
       position: absolute;
@@ -280,12 +283,9 @@
     }
 
     .work-card:hover .work-card-overlay { opacity: 1; }
-
     .work-card.hidden { display: none; }
 
-    /* ════════════════════════
-       PROJECT VIEW
-    ════════════════════════ */
+    /* ════════ PROJECT VIEW ════════ */
     .project-header {
       padding: 5.5rem 2rem 2rem;
       border-bottom: 1px solid var(--line);
@@ -320,11 +320,7 @@
       gap: 0.35rem;
     }
 
-    .meta-item {
-      font-size: 0.56rem;
-      letter-spacing: 0.06em;
-      color: var(--mid);
-    }
+    .meta-item { font-size: 0.56rem; letter-spacing: 0.06em; color: var(--mid); }
 
     .video-section {
       padding: 2rem;
@@ -341,8 +337,7 @@
     }
 
     .vimeo-wrap iframe {
-      position: absolute;
-      top: 0; left: 0;
+      position: absolute; top: 0; left: 0;
       width: 100%; height: 100%;
       border: none;
     }
@@ -367,31 +362,12 @@
     .desc-body p:last-child { margin-bottom: 0; }
     .desc-body em { font-style: normal; color: var(--accent); }
 
-    .project-photos {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
+    .project-photos { max-width: 860px; margin: 0 auto; padding: 2rem; }
     .photo-row { margin-bottom: 2.5rem; }
+    .photo-row img { width: 100%; display: block; outline: 1px solid var(--line); }
+    .photo-caption { margin-top: 0.8rem; font-size: 0.56rem; letter-spacing: 0.06em; color: var(--mid); line-height: 1.6; }
 
-    .photo-row img {
-      width: 100%;
-      display: block;
-      outline: 1px solid var(--line);
-    }
-
-    .photo-caption {
-      margin-top: 0.8rem;
-      font-size: 0.56rem;
-      letter-spacing: 0.06em;
-      color: var(--mid);
-      line-height: 1.6;
-    }
-
-    /* ════════════════════════
-       ABOUT VIEW
-    ════════════════════════ */
+    /* ════════ ABOUT VIEW ════════ */
     .about-hero {
       padding: 8rem 2rem 4rem;
       max-width: 860px;
@@ -423,9 +399,7 @@
     }
 
     .about-bio p:last-child { margin-bottom: 0; }
-
     .about-details { padding-top: 0.5rem; }
-
     .detail-block { margin-bottom: 2rem; }
 
     .detail-label {
@@ -436,12 +410,7 @@
       margin-bottom: 0.45rem;
     }
 
-    .detail-value {
-      font-size: 0.58rem;
-      letter-spacing: 0.04em;
-      color: var(--ink);
-      line-height: 1.75;
-    }
+    .detail-value { font-size: 0.58rem; letter-spacing: 0.04em; color: var(--ink); line-height: 1.75; }
 
     .about-connect {
       max-width: 860px;
@@ -473,8 +442,9 @@
     }
 
     @media (max-width: 640px) {
-      .home-grid, .work-grid { grid-template-columns: repeat(2, 1fr); padding: 0 1rem; }
-      .home-card { outline: 1px solid var(--line); }
+      .home-grid, .work-grid { grid-template-columns: repeat(2, 1fr); padding: 1rem; }
+      .work-grid.filtered { grid-template-columns: 1fr; }
+      .work-grid.filtered .work-card { aspect-ratio: 4/3; }
       .about-hero { grid-template-columns: 1fr; gap: 2rem; }
       .project-header { grid-template-columns: 1fr; }
       .project-meta { text-align: left; }
@@ -496,34 +466,33 @@
   <div class="view active" id="view-home">
     <div class="home-hero">
       <div class="home-hero-name">Huiyan Luo</div>
-      <p class="home-hero-bio">Interaction designer based in London. Working across games, film, installation, and performance to examine how digital platforms shape the way people think, behave, and connect — especially through systems that feel natural, friendly, or invisible.</p>
+      <p class="home-hero-bio">Interaction designer working across games, film, installation, and performance to examine how digital platforms shape the way people think, behave, and connect — especially through systems that feel natural, friendly, or invisible.</p>
     </div>
 
     <div class="home-label">Selected Works</div>
-
     <div class="home-grid" id="homeGrid"></div>
 
-    <footer><span>© 2026 Huiyan Luo</span><span>London</span></footer>
+    <div class="home-view-all">
+      <a onclick="showWork()">View all works →</a>
+    </div>
+
+    <footer><span>© 2026 Huiyan Luo</span><span></span></footer>
   </div>
 
   <!-- ════════ WORK ════════ -->
   <div class="view" id="view-work">
     <div class="work-top">
-      <div class="work-title-row">
-        <div class="work-page-title">Work</div>
-        <div class="filter-bar">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="3d">3D Work</button>
-          <button class="filter-btn" data-filter="installation">Installation</button>
-          <button class="filter-btn" data-filter="game">Game</button>
-          <button class="filter-btn" data-filter="film">Film</button>
-        </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="3d">3D Work</button>
+        <button class="filter-btn" data-filter="installation">Installation</button>
+        <button class="filter-btn" data-filter="game">Game</button>
+        <button class="filter-btn" data-filter="film">Film</button>
       </div>
     </div>
 
     <div class="work-grid" id="workGrid"></div>
-
-    <footer><span>© 2026 Huiyan Luo</span><span>London</span></footer>
+    <footer><span>© 2026 Huiyan Luo</span><span></span></footer>
   </div>
 
   <!-- ════════ PROJECT ════════ -->
@@ -535,15 +504,11 @@
       </div>
       <div class="project-meta" id="proj-meta"></div>
     </header>
-
     <section class="video-section" id="proj-video-section"></section>
-
     <section class="desc-section">
       <div class="desc-body" id="proj-desc"></div>
     </section>
-
     <div class="project-photos" id="proj-photos"></div>
-
     <footer><span>© 2026 Huiyan Luo</span><span></span></footer>
   </div>
 
@@ -553,7 +518,7 @@
       <div>
         <div class="about-name">Huiyan Luo</div>
         <div class="about-bio">
-          <p>Huiyan Luo is a Cantonese designer based in London, interested in how digital platforms shape the way people think, behave, and connect with each other. Her work explores the stories, interfaces, and systems behind everyday technologies, especially the ones that feel natural, friendly, or invisible.</p>
+          <p>Huiyan Luo is a Cantonese designer, interested in how digital platforms shape the way people think, behave, and connect with each other. Her work explores the stories, interfaces, and systems behind everyday technologies, especially the ones that feel natural, friendly, or invisible.</p>
           <p>She is curious about how technologies are often humanised, mythologised, and presented as caring or intelligent, while the labour, power structures, and infrastructures behind them remain hidden. Through research-led design, moving image, games, and interactive installations, she investigates these tensions and turns them into experiences that people can see, feel, and question.</p>
           <p>While trying to discover and explain problems, Huiyan enjoys building worlds, situations, and interactions that invite audiences to look at familiar technologies from different perspectives. For her, research is not the final goal but a starting point for creating new ways of seeing and experiencing the systems that shape contemporary life.</p>
         </div>
@@ -582,8 +547,6 @@
   </div>
 
   <script>
-    // ── PROJECT DATA ──
-    // all-order: spirited, 2perspective, lotus, 100challenge, caution, homeostat, maternal, wandering, ipev, friendship
     const projects = [
       {
         id: "spirited",
@@ -731,45 +694,57 @@
       }
     ];
 
-    // card HTML shared by home and work grids
-    function cardHTML(p, i, overlayClass) {
-      return `
-        <div class="${overlayClass === 'home-card-overlay' ? 'home-card' : 'work-card'}"
-             data-index="${i}"
-             data-categories="${p.categories.join(' ')}"
-             onclick="showProject(${i})">
-          <img src="${p.thumb || p.image || ''}" alt="" onerror="this.style.opacity='0'">
-          <div class="${overlayClass}">
-            <div class="overlay-title">${p.title}</div>
-            <div class="overlay-snippet">${p.snippet}<span class="overlay-more"> ...more →</span></div>
-          </div>
-        </div>
-      `;
-    }
-
+    // home: only first 6
     function buildHomeGrid() {
       document.getElementById('homeGrid').innerHTML =
-        projects.map((p, i) => cardHTML(p, i, 'home-card-overlay')).join('');
+        projects.slice(0, 6).map((p, i) => `
+          <div class="home-card" data-index="${i}" onclick="showProject(${i})">
+            <img src="${p.thumb || p.image || ''}" alt="" onerror="this.style.opacity='0'">
+            <div class="home-card-overlay">
+              <div class="overlay-title">${p.title}</div>
+              <div class="overlay-snippet">${p.snippet}<span class="overlay-more"> ...more →</span></div>
+            </div>
+          </div>
+        `).join('');
     }
 
+    // work: all 10
     function buildWorkGrid() {
       document.getElementById('workGrid').innerHTML =
-        projects.map((p, i) => cardHTML(p, i, 'work-card-overlay')).join('');
+        projects.map((p, i) => `
+          <div class="work-card" data-index="${i}" data-categories="${p.categories.join(' ')}" onclick="showProject(${i})">
+            <img src="${p.thumb || p.image || ''}" alt="" onerror="this.style.opacity='0'">
+            <div class="work-card-overlay">
+              <div class="overlay-title">${p.title}</div>
+              <div class="overlay-snippet">${p.snippet}<span class="overlay-more"> ...more →</span></div>
+            </div>
+          </div>
+        `).join('');
     }
 
-    // filter
+    // filter — toggle .filtered class for single-col layout
+    let currentFilter = 'all';
+
     document.addEventListener('click', e => {
       const btn = e.target.closest('.filter-btn');
       if (!btn) return;
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const f = btn.dataset.filter;
+      currentFilter = btn.dataset.filter;
+      const grid = document.getElementById('workGrid');
+
+      if (currentFilter === 'all') {
+        grid.classList.remove('filtered');
+      } else {
+        grid.classList.add('filtered');
+      }
+
       document.querySelectorAll('.work-card').forEach(card => {
-        card.classList.toggle('hidden', f !== 'all' && !card.dataset.categories.includes(f));
+        card.classList.toggle('hidden',
+          currentFilter !== 'all' && !card.dataset.categories.includes(currentFilter));
       });
     });
 
-    // nav state
     let prevView = 'home';
 
     function setActiveNav(id) {
@@ -784,7 +759,7 @@
     }
 
     function showHome() {
-      history.pushState({ view: 'home' }, '', '#');
+      try { history.pushState({ view: 'home' }, '', '#'); } catch(e) {}
       prevView = 'home';
       switchView('view-home');
       document.getElementById('backBtn').style.display = 'none';
@@ -792,7 +767,7 @@
     }
 
     function showWork() {
-      history.pushState({ view: 'work' }, '', '#work');
+      try { history.pushState({ view: 'work' }, '', '#work'); } catch(e) {}
       prevView = 'work';
       switchView('view-work');
       document.getElementById('backBtn').style.display = 'none';
@@ -800,7 +775,7 @@
     }
 
     function showAbout() {
-      history.pushState({ view: 'about' }, '', '#about');
+      try { history.pushState({ view: 'about' }, '', '#about'); } catch(e) {}
       prevView = 'about';
       switchView('view-about');
       document.getElementById('backBtn').style.display = 'none';
@@ -808,7 +783,7 @@
     }
 
     function showProject(index) {
-      history.pushState({ view: 'project', index, from: prevView }, '', `#project-${index}`);
+      try { history.pushState({ view: 'project', index, from: prevView }, '', `#project-${index}`); } catch(e) {}
       const p = projects[index];
 
       document.getElementById('proj-num').textContent =
@@ -853,10 +828,10 @@
 
     window.addEventListener('popstate', e => {
       const s = e.state;
-      if (!s || s.view === 'home') { showHome(); }
-      else if (s.view === 'work') { showWork(); }
-      else if (s.view === 'about') { showAbout(); }
-      else if (s.view === 'project') { showProject(s.index); }
+      if (!s || s.view === 'home') showHome();
+      else if (s.view === 'work') showWork();
+      else if (s.view === 'about') showAbout();
+      else if (s.view === 'project') showProject(s.index);
     });
 
     buildHomeGrid();
