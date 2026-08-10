@@ -6,7 +6,6 @@
   <title>Huiyan Luo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,500;0,700;0,800;1,700&family=Share+Tech+Mono&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
-
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -29,18 +28,20 @@
       cursor: default;
     }
 
+    /* ── NAV ── */
     nav {
-      position: absolute;
+      position: fixed;
       top: 0; right: 0;
       z-index: 100;
       padding: 1.4rem 2rem;
       display: flex;
       gap: 2rem;
+      background: var(--bg);
     }
 
     nav a {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.85rem;
+      font-size: 0.72rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--mid);
@@ -49,11 +50,11 @@
       transition: color 0.15s;
     }
 
-    nav a:hover { color: var(--accent); }
-    nav a.active { color: var(--accent); }
+    nav a:hover { color: var(--ink); }
+    nav a.active { color: var(--ink); }
 
     .back-btn {
-      position: absolute;
+      position: fixed;
       top: 0; left: 0;
       z-index: 100;
       padding: 1.4rem 2rem;
@@ -66,7 +67,7 @@
       display: none;
       transition: color 0.15s;
       outline: none;
-      background: none;
+      background: var(--bg);
       border: none;
     }
 
@@ -75,120 +76,220 @@
     .view { display: none; animation: fadeIn 0.2s ease; }
     .view.active { display: block; }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    /* ════════════════════════
+       HOME
+    ════════════════════════ */
+    .home-hero {
+      padding: 10rem 2rem 4rem;
+      text-align: center;
+      border-bottom: 1px solid var(--line);
     }
 
-    .home-top {
-      padding: 5rem 2rem 2rem;
+    .home-hero-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 1.4rem;
+    }
+
+    .home-hero-bio {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      line-height: 1.9;
+      color: var(--mid);
+      max-width: 70ch;
+      margin: 0 auto;
+      letter-spacing: 0.01em;
+    }
+
+    .home-label {
+      padding: 1.2rem 2rem;
+      font-size: 0.55rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ── HOME GRID ── */
+    .home-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin: 0 auto;
+      padding: 0 8rem;
+    }
+
+    .home-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 4/3;
+      background: #eee;
+      outline: 1px solid var(--line);
+    }
+
+    .home-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(15%);
+      transition: filter 0.4s ease, transform 0.5s ease;
+    }
+
+    .home-card:hover img {
+      filter: grayscale(0%);
+      transform: scale(1.03);
+    }
+
+    /* hover overlay */
+    .home-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.93);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1.6rem;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+    }
+
+    .home-card:hover .home-card-overlay { opacity: 1; }
+
+    .overlay-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .overlay-snippet {
+      font-size: 0.6rem;
+      line-height: 1.7;
+      color: var(--mid);
+      letter-spacing: 0.01em;
+    }
+
+    .overlay-more {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+
+    /* ════════════════════════
+       WORK VIEW
+    ════════════════════════ */
+    .work-top {
+      padding: 6rem 2rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .work-title-row {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: flex-end;
+      padding-bottom: 1.2rem;
     }
 
-    .home-top-name {
+    .work-page-title {
       font-family: 'DM Sans', sans-serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 30;
-      line-height: 0.88;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 300;
       color: var(--ink);
+      letter-spacing: -0.01em;
     }
 
-    .featured-section {
-      padding: 0 2rem;
-      max-width: 900px;
-      margin: 0 auto;
+    .filter-bar {
+      display: flex;
+      gap: 1.5rem;
     }
 
-    .featured-card {
-      position: relative;
-      cursor: pointer;
-      background: #e8e8ea;
-      margin-bottom: 2.5rem;
-      transition: filter 0.4s ease;
-    }
-
-    .featured-card img {
-      width: 100%;
-      display: block;
-      opacity: 0.9;
-      filter: grayscale(20%) contrast(1.1);
-      transition: opacity 0.4s ease, transform 0.5s ease, filter 0.4s ease;
-    }
-
-    .featured-card:hover img {
-      opacity: 1;
-      filter: grayscale(0%) contrast(1);
-    }
-
-    .card-hover-title {
-      padding: 0.5rem 0 0;
+    .filter-btn {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      color: var(--mid);
-      text-transform: uppercase;
-    }
-
-    .grid-section {
-      padding: 0 2rem 2rem;
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-    }
-
-    .grid-card {
-      position: relative;
-      cursor: pointer;
-      background: #e8e8ea;
-      transition: filter 0.4s ease;
-    }
-
-    .grid-card img {
-      width: 100%;
-      display: block;
-      opacity: 0.9;
-      filter: grayscale(20%) contrast(1.1);
-      transition: opacity 0.4s ease, transform 0.5s ease;
-    }
-
-    .grid-card:hover img {
-      opacity: 1;
-      filter: grayscale(0%) contrast(1);
-    }
-
-    .grid-card .card-hover-title {
-      padding: 0.5rem 0 0;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      color: var(--mid);
-      text-transform: uppercase;
-    }
-
-    .featured-section:has(.featured-card:hover) .featured-card:not(:hover),
-    .grid-section:has(.grid-card:hover) .grid-card:not(:hover) {
-      filter: brightness(0.5);
-    }
-
-    .section-divider {
-      padding: 1.5rem 2rem 1rem;
-      max-width: 900px;
-      margin: 0 auto;
-      font-size: 0.55rem;
+      font-size: 0.58rem;
       letter-spacing: 0.12em;
+      text-transform: uppercase;
       color: var(--mid);
-      border-top: 1px solid var(--line);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0 0 0.3rem;
+      border-bottom: 1px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
     }
 
+    .filter-btn:hover { color: var(--ink); }
+    .filter-btn.active { color: var(--ink); border-bottom-color: var(--ink); }
+
+    /* work grid */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .work-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 4/3;
+      background: #eee;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .work-card:nth-child(3n) { border-right: none; }
+
+    .work-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(15%);
+      transition: filter 0.4s ease, transform 0.5s ease;
+    }
+
+    .work-card:hover img {
+      filter: grayscale(0%);
+      transform: scale(1.03);
+    }
+
+    .work-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.93);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1.6rem;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+    }
+
+    .work-card:hover .work-card-overlay { opacity: 1; }
+
+    .work-card.hidden { display: none; }
+
+    /* ════════════════════════
+       PROJECT VIEW
+    ════════════════════════ */
     .project-header {
       padding: 5.5rem 2rem 2rem;
       border-bottom: 1px solid var(--line);
+      max-width: 860px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr auto;
       align-items: end;
@@ -196,32 +297,30 @@
     }
 
     .project-num-label {
-      font-size: 0.6rem;
-      letter-spacing: 0.08em;
-      color: var(--accent);
-      margin-bottom: 0.6rem;
+      font-size: 0.56rem;
+      letter-spacing: 0.1em;
+      color: var(--mid);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
     }
 
-    .project-num-label::before { content: 'FILE '; color: var(--mid); }
-
     .project-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(1rem, 3.5vw, 2rem);
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(1.2rem, 3vw, 2rem);
       font-weight: 300;
-      line-height: 0.88;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
     }
 
     .project-meta {
       text-align: right;
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
+      gap: 0.35rem;
     }
 
     .meta-item {
-      font-size: 0.6rem;
+      font-size: 0.56rem;
       letter-spacing: 0.06em;
       color: var(--mid);
     }
@@ -238,7 +337,6 @@
       padding-top: 56.25%;
       background: #000;
       overflow: hidden;
-      outline: 1px solid var(--line);
     }
 
     .vimeo-wrap iframe {
@@ -248,46 +346,20 @@
       border: none;
     }
 
-.desc-section {
-  max-width: 860px;
-  margin: 0 auto;
-  border-bottom: 1px solid var(--line);
-}
-    .desc-sidebar {
-      padding: 2.5rem 1.5rem 2.5rem 2rem;
-      border-right: 1px solid var(--line);
+    .desc-section {
+      max-width: 860px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--line);
+      padding: 2.5rem 2rem;
     }
-
-    .desc-sidebar-label {
-      font-size: 0.55rem;
-      letter-spacing: 0.1em;
-      color: var(--mid);
-      margin-bottom: 1.2rem;
-    }
-
-    .desc-sidebar-label::before { content: '// '; color: #ccc; }
-
-    .desc-sidebar-tags { display: flex; flex-direction: column; gap: 0; }
-
-    .tag {
-      font-size: 0.58rem;
-      letter-spacing: 0.06em;
-      color: var(--mid);
-      padding: 0.5rem 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .tag::before { content: '— '; color: #ccc; }
-
-    .desc-body { padding: 2.5rem 3rem 2.5rem 2.5rem; }
 
     .desc-body p {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.82rem;
-      line-height: 1.8;
+      font-size: 0.78rem;
+      line-height: 1.85;
       color: var(--mid);
       max-width: 64ch;
-      margin-bottom: 1.4rem;
+      margin-bottom: 1.3rem;
       letter-spacing: 0.01em;
     }
 
@@ -300,9 +372,7 @@
       padding: 2rem;
     }
 
-    .photo-row {
-      margin-bottom: 2.5rem;
-    }
+    .photo-row { margin-bottom: 2.5rem; }
 
     .photo-row img {
       width: 100%;
@@ -312,315 +382,234 @@
 
     .photo-caption {
       margin-top: 0.8rem;
-      font-size: 0.6rem;
+      font-size: 0.56rem;
       letter-spacing: 0.06em;
       color: var(--mid);
       line-height: 1.6;
     }
 
-    .page-header {
-      padding: 5.5rem 2rem 2rem;
+    /* ════════════════════════
+       ABOUT VIEW
+    ════════════════════════ */
+    .about-hero {
+      padding: 8rem 2rem 4rem;
+      max-width: 860px;
+      margin: 0 auto;
       border-bottom: 1px solid var(--line);
-    }
-
-    .page-header h1 {
-      font-family: 'DM Sans', sans-serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 30;
-      line-height: 0.88;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-    }
-
-    .page-header h1 em {
-      font-style: italic;
-      font-weight: 50;
-      color: var(--accent);
-      display: block;
-      font-size: 0.5em;
-      letter-spacing: 0.05em;
-    }
-
-    .about-wrap {
       display: grid;
-      grid-template-columns: 220px 1fr;
-      min-height: calc(100vh - 14rem);
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
     }
 
-    .sidebar {
-      border-right: 1px solid var(--line);
-      padding: 2.5rem 1.5rem 2.5rem 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+    .about-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 2rem;
     }
 
-    .sidebar-label {
-      font-size: 0.55rem;
-      letter-spacing: 0.1em;
-      color: var(--mid);
-      margin-bottom: 1.2rem;
-    }
-
-    .sidebar-label::before { content: '// '; color: #ccc; }
-
-    .sidebar-link {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.8rem 0;
-      border-top: 1px solid var(--line);
-      text-decoration: none;
-      color: var(--mid);
-      font-size: 0.62rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      transition: color 0.15s ease;
-    }
-
-    .sidebar-link:last-child { border-bottom: 1px solid var(--line); }
-    .sidebar-link:hover { color: var(--accent); }
-    .sidebar-link .icon { opacity: 0.4; flex-shrink: 0; }
-
-    .sidebar-link .arrow {
-      margin-left: auto;
-      opacity: 0;
-      transform: translateX(-4px);
-      transition: opacity 0.15s ease, transform 0.15s ease;
-      color: var(--accent);
-    }
-
-    .sidebar-link:hover .arrow { opacity: 1; transform: translateX(0); }
-
-    .bio-col { padding: 2.5rem 3rem 2.5rem 2.5rem; }
-
-    .bio-col p {
+    .about-bio p {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.82rem;
+      font-size: 0.72rem;
       line-height: 1.9;
       color: var(--mid);
-      max-width: 62ch;
-      margin-bottom: 1.6rem;
+      max-width: 54ch;
+      margin-bottom: 1.2rem;
       letter-spacing: 0.01em;
     }
 
-    .bio-col p:last-child { margin-bottom: 0; }
-    .bio-col p em { font-style: normal; color: var(--accent); }
+    .about-bio p:last-child { margin-bottom: 0; }
 
-    .bio-details {
-      margin-top: 2.5rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--line);
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+    .about-details { padding-top: 0.5rem; }
+
+    .detail-block { margin-bottom: 2rem; }
+
+    .detail-label {
+      font-size: 0.48rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.45rem;
     }
 
+    .detail-value {
+      font-size: 0.58rem;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      line-height: 1.75;
+    }
 
+    .about-connect {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: flex;
+      gap: 2.5rem;
+    }
 
+    .connect-link {
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .connect-link:hover { color: var(--accent); }
 
     footer {
       border-top: 1px solid var(--line);
       padding: 1.2rem 2rem;
       display: flex;
       justify-content: space-between;
-      font-size: 0.55rem;
-      letter-spacing: 0.08em;
+      font-size: 0.5rem;
+      letter-spacing: 0.1em;
       color: var(--mid);
     }
 
-    @media (max-width: 600px) {
-      .grid-section { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 640px) {
+      .home-grid, .work-grid { grid-template-columns: repeat(2, 1fr); }
+      .home-card:nth-child(3n), .work-card:nth-child(3n) { border-right: 1px solid var(--line); }
+      .home-card:nth-child(2n), .work-card:nth-child(2n) { border-right: none; }
+      .about-hero { grid-template-columns: 1fr; gap: 2rem; }
       .project-header { grid-template-columns: 1fr; }
       .project-meta { text-align: left; }
-      .desc-section { grid-template-columns: 1fr; }
-      .desc-sidebar { border-right: none; border-bottom: 1px solid var(--line); }
-      .about-wrap { grid-template-columns: 1fr; }
-      .sidebar { border-right: none; border-bottom: 1px solid var(--line); }
-      .bio-col { padding: 2rem; }
-      .bio-details { grid-template-columns: 1fr 1fr; }
+      .filter-bar { flex-wrap: wrap; gap: 0.8rem; }
     }
   </style>
 </head>
 <body>
 
-  <button class="back-btn" id="backBtn" onclick="showHome()">← Back</button>
+  <button class="back-btn" id="backBtn" onclick="goBack()">← Back</button>
 
   <nav>
     <a onclick="showHome()" id="nav-home" class="active">Home</a>
+    <a onclick="showWork()" id="nav-work">Work</a>
     <a onclick="showAbout()" id="nav-about">About</a>
   </nav>
 
-  <!-- ════════ HOME VIEW ════════ -->
+  <!-- ════════ HOME ════════ -->
   <div class="view active" id="view-home">
-
-    <div class="home-top">
-      <div class="home-top-name">Huiyan Luo</div>
+    <div class="home-hero">
+      <div class="home-hero-name">Huiyan Luo</div>
+      <p class="home-hero-bio">Interaction designer based in London. Working across games, film, installation, and performance to examine how digital platforms shape the way people think, behave, and connect — especially through systems that feel natural, friendly, or invisible.</p>
     </div>
 
-    <div class="section-divider">Selected Works</div>
-    <div class="featured-section">
-      <div class="featured-card" onclick="showProject(0)">
-        <img src="images/10.png" alt="" onerror="this.style.opacity='0'">
-        <div class="card-hover-title">Spirited Away 2026: Distillation</div>
-      </div>
-      <div class="featured-card" onclick="showProject(2)">
-        <img src="images/02.png" alt="" onerror="this.style.opacity='0'">
-        <div class="card-hover-title">Two perspectives: From a bird to chaos</div>
-      </div>
-      <div class="featured-card" onclick="showProject(3)">
-        <img src="images/03.png" alt="" onerror="this.style.opacity='0'">
-        <div class="card-hover-title">The Lotus' Narrative</div>
-      </div>
-      <div class="featured-card" onclick="showProject(4)">
-        <img src="images/04.png" alt="" onerror="this.style.opacity='0'">
-        <div class="card-hover-title">100￥ Challenge</div>
-      </div>
-      <div class="featured-card" onclick="showProject(5)">
-        <img src="images/05.png" alt="" onerror="this.style.opacity='0'">
-        <div class="card-hover-title">Caution! The Klein Loop</div>
-      </div>
-      <div class="featured-card" onclick="showProject(9)">
-        <img src="images/09.png" alt="" onerror="this.style.opacity='0'">
-        <div class="card-hover-title">Homeostat</div>
-      </div>
-    </div>
+    <div class="home-label">Selected Works</div>
 
-    <div class="section-divider">Other Works</div>
-    <div class="grid-section">
-      <div class="grid-card" onclick="showProject(1)">
-        <img src="images/01.png" alt="" onerror="this.style.opacity='0'">
-        <div class="card-hover-title">Maternal Intelligence</div>
-      </div>
-      <div class="grid-card" onclick="showProject(6)">
-        <img src="images/06.png" alt="" onerror="this.style.opacity='0'">
-        <div class="card-hover-title">Wandering Shanghai</div>
-      </div>
-      <div class="grid-card" onclick="showProject(7)">
-        <img src="images/07.png" alt="" onerror="this.style.opacity='0'">
-        <div class="card-hover-title">IPEV</div>
-      </div>
-      <div class="grid-card" onclick="showProject(8)">
-        <img src="images/08.png" alt="" onerror="this.style.opacity='0'">
-        <div class="card-hover-title">Friend＄hip</div>
-      </div>
-    </div>
+    <div class="home-grid" id="homeGrid"></div>
 
-    <footer>
-      <span>© 2026 Huiyan Luo</span>
-      <span></span>
-    </footer>
+    <footer><span>© 2026 Huiyan Luo</span><span>London</span></footer>
   </div>
 
-  <!-- ════════ PROJECT VIEW ════════ -->
+  <!-- ════════ WORK ════════ -->
+  <div class="view" id="view-work">
+    <div class="work-top">
+      <div class="work-title-row">
+        <div class="work-page-title">Work</div>
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="3d">3D Work</button>
+          <button class="filter-btn" data-filter="installation">Installation</button>
+          <button class="filter-btn" data-filter="game">Game</button>
+          <button class="filter-btn" data-filter="film">Film</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-grid" id="workGrid"></div>
+
+    <footer><span>© 2026 Huiyan Luo</span><span>London</span></footer>
+  </div>
+
+  <!-- ════════ PROJECT ════════ -->
   <div class="view" id="view-project">
     <header class="project-header">
       <div>
-        <div class="project-num-label" id="proj-num">01 / 10</div>
+        <div class="project-num-label" id="proj-num"></div>
         <h1 class="project-title" id="proj-title"></h1>
       </div>
       <div class="project-meta" id="proj-meta"></div>
     </header>
 
     <section class="video-section" id="proj-video-section"></section>
-    
-<section class="desc-section">
-  <div class="desc-body" id="proj-desc"></div>
-</section>
-    
+
+    <section class="desc-section">
+      <div class="desc-body" id="proj-desc"></div>
+    </section>
+
     <div class="project-photos" id="proj-photos"></div>
 
-    <footer>
-      <span>© 2026 Huiyan Luo</span>
-      <span></span>
-    </footer>
+    <footer><span>© 2026 Huiyan Luo</span><span></span></footer>
   </div>
 
-  <!-- ════════ ABOUT VIEW ════════ -->
+  <!-- ════════ ABOUT ════════ -->
   <div class="view" id="view-about">
-    <header class="page-header">
-      <h1>About<br><em></em></h1>
-    </header>
-
-    <div class="about-wrap">
-      <aside class="sidebar">
-        <div class="sidebar-label">Connect</div>
-        <a href="cv.pdf" download class="sidebar-link">
-          <span class="icon">↓</span>
-          Download CV
-          <span class="arrow">→</span>
-        </a>
-        <a href="https://www.instagram.com/iihuiyan/" target="_blank" rel="noopener" class="sidebar-link">
-          <span class="icon">◎</span>
-          Instagram
-          <span class="arrow">→</span>
-        </a>
-        <a href="mailto:luohuiyan922@gmail.com" class="sidebar-link">
-          <span class="icon">✉</span>
-          Email
-          <span class="arrow">→</span>
-        </a>
-      </aside>
-
-      <section class="bio-col">
-        <p>Huiyan Luo is a Cantonese designer based in London, interested in how digital platforms shape the way people think, behave, and connect with each other. Her work explores the stories, interfaces, and systems behind everyday technologies, especially the ones that feel natural, friendly, or invisible.</p>
-        <p>She is curious about how technologies are often humanised, mythologised, and presented as caring or intelligent, while the labour, power structures, and infrastructures behind them remain hidden. Through research-led design, moving image, games, and interactive installations, she investigates these tensions and turns them into experiences that people can see, feel, and question.</p>
-        <p>While trying to discover and explain problems, Huiyan enjoys building worlds, situations, and interactions that invite audiences to look at familiar technologies from different perspectives. For her, research is not the final goal but a starting point for creating new ways of seeing and experiencing the systems that shape contemporary life.</p>
-
-        <div class="bio-details">
-          <div class="detail-item">
-            <div class="detail-label">Based</div>
-            <div class="detail-value">London & Canton</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-label">Practice</div>
-            <div class="detail-value">Game, Film, Installation, Performance</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-label">Education</div>
-            <div class="detail-value">MA — Interaction Design, UAL LCC, London<br>BA — Electronic Commerce, Tianjin University, China</div>
-          </div>
+    <div class="about-hero">
+      <div>
+        <div class="about-name">Huiyan Luo</div>
+        <div class="about-bio">
+          <p>Huiyan Luo is a Cantonese designer based in London, interested in how digital platforms shape the way people think, behave, and connect with each other. Her work explores the stories, interfaces, and systems behind everyday technologies, especially the ones that feel natural, friendly, or invisible.</p>
+          <p>She is curious about how technologies are often humanised, mythologised, and presented as caring or intelligent, while the labour, power structures, and infrastructures behind them remain hidden. Through research-led design, moving image, games, and interactive installations, she investigates these tensions and turns them into experiences that people can see, feel, and question.</p>
+          <p>While trying to discover and explain problems, Huiyan enjoys building worlds, situations, and interactions that invite audiences to look at familiar technologies from different perspectives. For her, research is not the final goal but a starting point for creating new ways of seeing and experiencing the systems that shape contemporary life.</p>
         </div>
-      </section>
+      </div>
+      <div class="about-details">
+        <div class="detail-block">
+          <div class="detail-label">Based</div>
+          <div class="detail-value">London & Canton</div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-label">Practice</div>
+          <div class="detail-value">Game, Film, Installation, Performance</div>
+        </div>
+        <div class="detail-block">
+          <div class="detail-label">Education</div>
+          <div class="detail-value">MA — Interaction Design<br>UAL LCC, London<br><br>BA — Electronic Commerce<br>Tianjin University, China</div>
+        </div>
+      </div>
     </div>
-
-    <footer>
-      <span>© 2026 Huiyan Luo</span>
-      <span></span>
-    </footer>
+    <div class="about-connect">
+      <a href="cv.pdf" download class="connect-link">↓ CV</a>
+      <a href="https://www.instagram.com/iihuiyan/" target="_blank" rel="noopener" class="connect-link">Instagram</a>
+      <a href="mailto:luohuiyan922@gmail.com" class="connect-link">Email</a>
+    </div>
+    <footer><span>© 2026 Huiyan Luo</span><span></span></footer>
   </div>
 
   <script>
+    // ── PROJECT DATA ──
+    // all-order: spirited, 2perspective, lotus, 100challenge, caution, homeostat, maternal, wandering, ipev, friendship
     const projects = [
       {
+        id: "spirited",
         title: "Spirited Away 2026: Distillation",
         year: "July 2026",
         medium: "Visual Novel, Desktop Installation",
+        categories: ["3d", "installation", "game"],
+        thumb: "images/10.png",
         image: "images/10.png",
+        snippet: "Examines how companies collect, organise, and repurpose employees' knowledge and working behaviours as digital assets.",
         description: `
           <p>This project draws on GitHub's Colleague.skill, also known as the Distillation Project, situating it within the growing use of AI agents in the workplace. It examines how companies collect, organise, and repurpose employees' knowledge, skills, and working behaviours as digital assets.</p>
           <p>Through a visual novel and a desktop-based interactive installation, the work sets this against Miyazaki's <em>Spirited Away</em> (2001). In the bathhouse, coercion was visible: a strict boss, an unfair contract, a stolen name. Twenty-five years on, the mechanism is gentler and harder to see. No one takes your name. Instead, your name becomes a row in a dataset, and the parts of you that can be modelled quietly become the property of the system.</p>
           <p>If distillation is a new form of Spiriting Away, it is one that arrives as efficiency rather than violence. The project asks: when knowledge, skills, and working practices can be preserved, reproduced, and automated, what remains beyond the reach of the system? And what do we still have to act on it?</p>
         `,
-        photos: [
-          { src: "documentation/1.jpg", caption: "" },
-        ]
+        photos: [{ src: "documentation/1.jpg", caption: "" }]
       },
       {
-        title: "Maternal Intelligence",
-        year: "2026",
-        medium: "Film, Installation",
-        image: "images/01.png",
-        description: `
-          <p><em>Maternal Intelligence</em> is a dual-screen installation that critiques how AI safety and alignment discourse appropriates the language of maternal instinct as a technical and rhetorical framework.</p>
-          <p>The work presents two simultaneous views: a participant navigating what appears to be an AI companionship interface, and a backend administrative panel revealing the corporate logics behind it. The piece stages a double exposure — care as product, intimacy as data.</p>
-        `
-      },
-      {
+        id: "2perspective",
         title: "Two perspectives: From a bird to chaos",
         year: "2026",
         medium: "Film",
+        categories: ["film"],
+        thumb: "images/02.png",
         vimeoId: "1199216710",
+        snippet: "A split-screen experimental film placing bird nest building alongside the historical development of human space infrastructure.",
         description: `
           <p><em>Two perspectives: From a bird to chaos</em> was created in collaboration with the Autonomy Institute in London and exhibited at IKLECTIK as part of a design fiction programme exploring the political economy of space expansion.</p>
           <p>Focusing on the theme of Waste and Unintentional Archives, the project examines the growing accumulation of human-made debris in orbit and asks what these discarded objects reveal about contemporary space development. Defunct satellites, rocket stages and abandoned equipment were never intended to function as records, yet they form an unintended archive of human activity, exposing patterns of extraction, consumption and the assumption that space can serve as an unlimited frontier for disposal.</p>
@@ -629,10 +618,14 @@
         `
       },
       {
+        id: "lotus",
         title: "The Lotus' Narrative",
         year: "2024",
         medium: "Game",
+        categories: ["3d", "game"],
+        thumb: "images/03.png",
         embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/emmOKUM3gTs" allowfullscreen></iframe>`,
+        snippet: "A decentralized interactive game questioning grand narratives and the suppression of individual experience.",
         description: `
           <p><em>The Lotus' Narrative</em> tells about the world of the Lotus Eaters, which is a tranquil haven that rejects grand narratives, embodying a longing to resist binary opposition and the suppression of individuality. This vision forms the narrative foundation of the project.</p>
           <p>The project examines how China's pursuit of collective achievement and efficiency often neglects individual experiences and attributes, critically reflecting on the rationale of grand narratives built on suppressing individual differences. The game follows an Odyssean crew member tasked with the grand mission of locating lost comrades. However, within the realm of the Lotus Eaters, they come to understand the profound significance of personal experiences and micro-narratives, ultimately choosing to stay and abandon collective conformity.</p>
@@ -640,150 +633,234 @@
         `
       },
       {
+        id: "100challenge",
         title: "100￥ Challenge",
         year: "2024",
         medium: "Interactive Installation, VR",
+        categories: ["3d", "installation"],
+        thumb: "images/04.png",
         embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/YK5rvwLirnQ" allowfullscreen></iframe>`,
+        snippet: "Immerses the audience in the role of a delivery worker, revealing the helplessness of workers manipulated by platform capitalism.",
         description: `
           <p><em>100￥ Challenge</em>, inspired by the "100 Yuan Challenge" incident on China's largest food delivery platform, addresses hidden labor exploitation, platform capitalism, and shifting responsibility. An interactive installation immerses the audience in the role of a delivery worker, highlighting the struggles of self-worth under platform-driven pressures and the unconscious exploitation by consumers. By simulating unsanitary shops and whistleblowing, the installation reveals the helplessness of workers manipulated by the platform.</p>
         `
       },
       {
+        id: "caution",
         title: "Caution! The Klein Loop",
         year: "2023",
         medium: "Performance, Short-film",
+        categories: ["3d", "film"],
+        thumb: "images/05.png",
         embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/iVsssRJsbyk" allowfullscreen></iframe>`,
+        snippet: "Explores how alt-accounts fragment the self across multiple identities, questioning authentic expression under social media expectations.",
         description: `
           <p>As social media becomes a vehicle for self-presentation, does it better help us with identity construction and identification?</p>
           <p>People tend to use alt-account to regain the initiative of self. However, in the expression of multiple identities, the real self is broken into pieces. Meanwhile, can we still maintain our authentic expression in the face of different expectations from different accounts?</p>
         `
       },
       {
-        title: "Wandering Shanghai",
-        year: "2025",
-        medium: "Game",
-        embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/gGxyj4PlLPc" allowfullscreen></iframe>`,
-        description: `
-          <p><em>Wandering Shanghai</em> uses a Shanghai-based walking simulator to show how social media turns travel into image-driven, platform-guided experiences. When guidance disappears, audiences feel disoriented, revealing how algorithms shape perception and turn real spaces into co-produced spectacles.</p>
-        `
-      },
-      {
-        title: "IPEV",
-        year: "2025",
-        medium: "Film",
-        embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/zmvw7ZUw_pY" allowfullscreen></iframe>`,
-        description: `
-          <p><em>IPEV</em> is a collaborative project with Paridhi Khanduri, Yashu Wu and Tianyang Lu.</p>
-          <p>The Film and Expanded Cinema project explores how the UK e-visa application shapes the immigrant experience, reflecting broader anti-immigration narratives in media. By juxtaposing the intimate, bureaucratic process with archival news and social media, and using dual projections: one for the digital application, one for external media, we allow audiences to inhabit the immigrant's position, navigating both administrative systems and societal hostility.</p>
-        `
-      },
-      {
-        title: "Friend＄hip",
-        year: "2025",
-        medium: "Browser Extension",
-        embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/QHbsg6ldL8w" allowfullscreen></iframe>`,
-        description: `
-          <p><em>Friend＄hip</em> examines how UX/UI features like TikTok's "fire streaks" are designed to serve platform business goals rather than purely social needs. My browser extension reinterprets this: clicking friends' messages grows a central flame and triggers a "friendship medal," while a panel tracks the user's attention versus the platform's profit, revealing the mechanics behind engagement.</p>
-        `
-      },
-      {
+        id: "homeostat",
         title: "Homeostat",
         year: "2022",
         medium: "Installation",
+        categories: ["installation"],
+        thumb: "images/09.png",
         embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/dmvGvh65ZQQ" allowfullscreen></iframe>`,
+        snippet: "A red balloon held in critical balance, requiring participants to continuously adjust in response to the system's real-time feedback.",
         description: `
           <p>Are humans and systems jointly maintaining a fragile balance?</p>
           <p>In Cybernetics (1948), Norbert Wiener proposed that systems maintain stable operation by continuously receiving feedback about their own outputs and using that information to adjust subsequent behaviour. W. Ross Ashby further developed this idea by arguing that systems naturally strive to keep their internal variables within a viable range, a condition he described as homeostasis. Any deviation from this range triggers self-correcting mechanisms that guide the system back towards equilibrium.</p>
           <p>In this installation, a red balloon is kept in a critical state where it can neither become excessively inflated nor continue to deflate. Through actions such as rotating, pushing and pressing, participants must constantly adjust their behaviour in response to the system's real-time feedback. No single action can maintain balance indefinitely. New deviations continually emerge, requiring new adjustments in an ongoing process.</p>
           <p>Through the interaction between the participant and the installation, the work suggests that the purpose of a system is not to reach completion but to remain in continuous operation. Balance is not an end state but an ongoing process. Within this process, the participant becomes part of the feedback loop, working together with the installation to sustain a dynamic equilibrium that can never be fully or permanently stabilised.</p>
         `
+      },
+      {
+        id: "maternal",
+        title: "Maternal Intelligence",
+        year: "2026",
+        medium: "Film, Installation",
+        categories: ["installation", "film"],
+        thumb: "images/01.png",
+        image: "images/01.png",
+        snippet: "Critiques how AI safety discourse appropriates the language of maternal instinct as a technical and rhetorical framework.",
+        description: `
+          <p><em>Maternal Intelligence</em> is a dual-screen installation that critiques how AI safety and alignment discourse appropriates the language of maternal instinct as a technical and rhetorical framework.</p>
+          <p>The work presents two simultaneous views: a participant navigating what appears to be an AI companionship interface, and a backend administrative panel revealing the corporate logics behind it. The piece stages a double exposure — care as product, intimacy as data.</p>
+        `
+      },
+      {
+        id: "wandering",
+        title: "Wandering Shanghai",
+        year: "2025",
+        medium: "Game",
+        categories: ["3d", "game"],
+        thumb: "images/06.png",
+        embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/gGxyj4PlLPc" allowfullscreen></iframe>`,
+        snippet: "A walking simulator showing how social media turns travel into image-driven, platform-guided spectacles.",
+        description: `
+          <p><em>Wandering Shanghai</em> uses a Shanghai-based walking simulator to show how social media turns travel into image-driven, platform-guided experiences. When guidance disappears, audiences feel disoriented, revealing how algorithms shape perception and turn real spaces into co-produced spectacles.</p>
+        `
+      },
+      {
+        id: "ipev",
+        title: "IPEV",
+        year: "2025",
+        medium: "Film",
+        categories: ["film"],
+        thumb: "images/07.png",
+        embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/zmvw7ZUw_pY" allowfullscreen></iframe>`,
+        snippet: "Explores how the UK e-visa process shapes the immigrant experience amid broader anti-immigration narratives in media.",
+        description: `
+          <p><em>IPEV</em> is a collaborative project with Paridhi Khanduri, Yashu Wu and Tianyang Lu.</p>
+          <p>The Film and Expanded Cinema project explores how the UK e-visa application shapes the immigrant experience, reflecting broader anti-immigration narratives in media. By juxtaposing the intimate, bureaucratic process with archival news and social media, and using dual projections: one for the digital application, one for external media, we allow audiences to inhabit the immigrant's position, navigating both administrative systems and societal hostility.</p>
+        `
+      },
+      {
+        id: "friendship",
+        title: "Friend＄hip",
+        year: "2025",
+        medium: "Browser Extension",
+        categories: ["game"],
+        thumb: "images/08.png",
+        embedHtml: `<iframe width="560" height="315" src="https://www.youtube.com/embed/QHbsg6ldL8w" allowfullscreen></iframe>`,
+        snippet: "A browser extension revealing how UX features like TikTok's fire streaks serve platform business goals rather than social connection.",
+        description: `
+          <p><em>Friend＄hip</em> examines how UX/UI features like TikTok's "fire streaks" are designed to serve platform business goals rather than purely social needs. My browser extension reinterprets this: clicking friends' messages grows a central flame and triggers a "friendship medal," while a panel tracks the user's attention versus the platform's profit, revealing the mechanics behind engagement.</p>
+        `
       }
     ];
 
-    let currentProject = 0;
+    // card HTML shared by home and work grids
+    function cardHTML(p, i, overlayClass) {
+      return `
+        <div class="${overlayClass === 'home-card-overlay' ? 'home-card' : 'work-card'}"
+             data-index="${i}"
+             data-categories="${p.categories.join(' ')}"
+             onclick="showProject(${i})">
+          <img src="${p.thumb || p.image || ''}" alt="" onerror="this.style.opacity='0'">
+          <div class="${overlayClass}">
+            <div class="overlay-title">${p.title}</div>
+            <div class="overlay-snippet">${p.snippet}<span class="overlay-more"> ...more →</span></div>
+          </div>
+        </div>
+      `;
+    }
+
+    function buildHomeGrid() {
+      document.getElementById('homeGrid').innerHTML =
+        projects.map((p, i) => cardHTML(p, i, 'home-card-overlay')).join('');
+    }
+
+    function buildWorkGrid() {
+      document.getElementById('workGrid').innerHTML =
+        projects.map((p, i) => cardHTML(p, i, 'work-card-overlay')).join('');
+    }
+
+    // filter
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.work-card').forEach(card => {
+        card.classList.toggle('hidden', f !== 'all' && !card.dataset.categories.includes(f));
+      });
+    });
+
+    // nav state
+    let prevView = 'home';
 
     function setActiveNav(id) {
       document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
       if (id) document.getElementById(id).classList.add('active');
     }
 
+    function switchView(id) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
     function showHome() {
       history.pushState({ view: 'home' }, '', '#');
-      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-      document.getElementById('view-home').classList.add('active');
+      prevView = 'home';
+      switchView('view-home');
       document.getElementById('backBtn').style.display = 'none';
       setActiveNav('nav-home');
-      window.scrollTo(0, 0);
+    }
+
+    function showWork() {
+      history.pushState({ view: 'work' }, '', '#work');
+      prevView = 'work';
+      switchView('view-work');
+      document.getElementById('backBtn').style.display = 'none';
+      setActiveNav('nav-work');
     }
 
     function showAbout() {
       history.pushState({ view: 'about' }, '', '#about');
-      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-      document.getElementById('view-about').classList.add('active');
-      document.getElementById('backBtn').style.display = 'block';
+      prevView = 'about';
+      switchView('view-about');
+      document.getElementById('backBtn').style.display = 'none';
       setActiveNav('nav-about');
-      window.scrollTo(0, 0);
     }
 
     function showProject(index) {
-      history.pushState({ view: 'project', index: index }, '', `#project-${index}`);
-      currentProject = index;
+      history.pushState({ view: 'project', index, from: prevView }, '', `#project-${index}`);
       const p = projects[index];
 
-      document.getElementById('proj-num').textContent = String(index + 1).padStart(2, '0') + ' / ' + projects.length;
+      document.getElementById('proj-num').textContent =
+        String(index + 1).padStart(2, '0') + ' / ' + projects.length;
       document.getElementById('proj-title').textContent = p.title;
       document.getElementById('proj-meta').innerHTML = `
         <div class="meta-item">${p.year}</div>
         <div class="meta-item">${p.medium}</div>
-        <div class="meta-item">${p.location || ''}</div>
       `;
 
-      const videoSection = document.getElementById('proj-video-section');
+      const vs = document.getElementById('proj-video-section');
       if (p.embedHtml) {
-        videoSection.innerHTML = `<div class="vimeo-wrap">${p.embedHtml}</div>`;
+        vs.innerHTML = `<div class="vimeo-wrap">${p.embedHtml}</div>`;
       } else if (p.vimeoId) {
-        videoSection.innerHTML = `<div class="vimeo-wrap"><iframe
+        vs.innerHTML = `<div class="vimeo-wrap"><iframe
           src="https://player.vimeo.com/video/${p.vimeoId}?title=0&byline=0&portrait=0&color=7a9e7e"
           allowfullscreen allow="autoplay; fullscreen; picture-in-picture"></iframe></div>`;
       } else if (p.image) {
-        videoSection.innerHTML = `<img src="${p.image}" style="width:100%;max-width:860px;display:block;margin:0 auto;">`;
+        vs.innerHTML = `<img src="${p.image}" style="width:100%;display:block;">`;
       } else {
-        videoSection.innerHTML = '';
+        vs.innerHTML = '';
       }
 
-const descEl = document.getElementById("proj-desc");
-if (descEl) {
-  descEl.innerHTML = p.description || "";
-}
-      const photosEl = document.getElementById('proj-photos');
-      if (p.photos && p.photos.length) {
-        photosEl.innerHTML = p.photos.map(ph => `
-          <div class="photo-row">
-            <img src="${ph.src}" alt="${ph.caption || ''}">
-            ${ph.caption ? `<div class="photo-caption">${ph.caption}</div>` : ''}
-          </div>
-        `).join('');
-      } else {
-        photosEl.innerHTML = '';
-      }
+      document.getElementById('proj-desc').innerHTML = p.description || '';
 
-      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-      document.getElementById('view-project').classList.add('active');
+      const ph = document.getElementById('proj-photos');
+      ph.innerHTML = (p.photos || []).map(r => `
+        <div class="photo-row">
+          <img src="${r.src}" alt="${r.caption || ''}">
+          ${r.caption ? `<div class="photo-caption">${r.caption}</div>` : ''}
+        </div>
+      `).join('');
+
+      switchView('view-project');
       document.getElementById('backBtn').style.display = 'block';
       setActiveNav(null);
-      window.scrollTo(0, 0);
     }
 
-    window.addEventListener('popstate', (e) => {
-      if (!e.state || e.state.view === 'home') {
-        showHome();
-      } else if (e.state.view === 'about') {
-        showAbout();
-      } else if (e.state.view === 'project') {
-        showProject(e.state.index);
-      }
-    });
-  </script>
+    function goBack() {
+      history.back();
+    }
 
+    window.addEventListener('popstate', e => {
+      const s = e.state;
+      if (!s || s.view === 'home') { showHome(); }
+      else if (s.view === 'work') { showWork(); }
+      else if (s.view === 'about') { showAbout(); }
+      else if (s.view === 'project') { showProject(s.index); }
+    });
+
+    buildHomeGrid();
+    buildWorkGrid();
+  </script>
 </body>
 </html>
