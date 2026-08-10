@@ -473,9 +473,8 @@
     }
 
     @media (max-width: 640px) {
-      .home-grid, .work-grid { grid-template-columns: repeat(2, 1fr); }
-      .home-card:nth-child(3n), .work-card:nth-child(3n) { border-right: 1px solid var(--line); }
-      .home-card:nth-child(2n), .work-card:nth-child(2n) { border-right: none; }
+      .home-grid, .work-grid { grid-template-columns: repeat(2, 1fr); padding: 0 1rem; }
+      .home-card { outline: 1px solid var(--line); }
       .about-hero { grid-template-columns: 1fr; gap: 2rem; }
       .project-header { grid-template-columns: 1fr; }
       .project-meta { text-align: left; }
